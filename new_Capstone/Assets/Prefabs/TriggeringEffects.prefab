@@ -44,9 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ae38426c3ecf3a46b3e4b4ad8791ad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moduleHadloaded: {fileID: 0}
+  levelHadLoaded: {fileID: 0}
   triggeringSound: {fileID: 4120183293755697909}
-  triggeringClip_1: {fileID: 8300000, guid: 90c8351c4e8e6e64996cccd7ab8b0db9, type: 3}
-  triggeringClip_2: {fileID: 8300000, guid: c54645ad6cb090a4db21db2a4dffe0fe, type: 3}
+  triggeringClip_1: {fileID: 8300000, guid: c54645ad6cb090a4db21db2a4dffe0fe, type: 3}
+  triggeringClip_2: {fileID: 8300000, guid: d881c97a7dd895e469af2734c44dde6a, type: 3}
 --- !u!82 &4120183293755697909
 AudioSource:
   m_ObjectHideFlags: 0

@@ -8,6 +8,10 @@ TagManager:
   - module1
   - tutorial
   - main menu
+  - module2
+  - canvasInModule1
+  - navObjects
+  - distractor
   layers:
   - Default
   - TransparentFX
