@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class toggleCanvas : MonoBehaviour
 {
+    
     public static bool canvas1HadOpened = false;
     public static bool canvas2HadOpened = false;
     public static bool canvas0HadOpened = false;
@@ -20,6 +21,7 @@ public class toggleCanvas : MonoBehaviour
     private void Awake()
     {
         ControllerStatus.ButtonDown += buttonHadPressed;
+        
     }
     private void Start()
     {
@@ -27,7 +29,7 @@ public class toggleCanvas : MonoBehaviour
     }
     private void OnDestroy()
     {
-        ControllerStatus.ButtonDown -= buttonHadPressed;
+        ControllerStatus.ButtonDown -= buttonHadPressed;   
     }
 
     // Update is called once per frame

@@ -13,6 +13,7 @@ public class trailMove : MonoBehaviour
 
     void Start()
     {
+        
         rightAnswerTransform = GameObject.FindGameObjectWithTag("rightAnswerPosition").transform;
         target = new Vector3(rightAnswerTransform.position.x, rightAnswerTransform.position.y, rightAnswerTransform.position.z);
     }

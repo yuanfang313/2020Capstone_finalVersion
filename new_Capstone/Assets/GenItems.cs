@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class GenItems : MonoBehaviour
 {
+    public static GameObject ringInScene0, ringInScene1, ringInScene2;
+    public static ParticleSystem ringParticleInScene1, ringParticleInScene2;
+    public static Animator deerAnimator;
+    public static Animator targetAnimator;
+    public static OVRInput.Controller controllerMask;
+
     // public region
     public List<GameObject> prefabTargets = new List<GameObject>();
     public List<Transform> target_p = new List<Transform>();
@@ -11,40 +17,39 @@ public class GenItems : MonoBehaviour
     public GameObject ringEffect_0, ringEffect_1, ringEffect_2;
     public GameObject bubbleParticles;
     public GameObject prefabTrailObject;
+    
 
     // private region
     private GameObject target1InScene;
     private GameObject target2InScene;
     private GameObject trailsInScene;
-    private GameObject ringInScene0, ringInScene1, ringInScene2;
     private GameObject bubbleInScene;
     
-
     private ParticleSystem[] ringParticleInScene0;
-    private ParticleSystem ringParticleInScene1, ringParticleInScene2;
-    private Animator deerAnimator;
+    
     private Transform rightAnswerTransformForRings;
  
     private bool startRing0 = false;
     private bool startRing1 = false;
     private bool startRing2 = false;
     private bool startBubbles = false;
+    private bool AnswerIsTarget1 = false;
+    private bool AnswerIsTarget2 = false;
 
     public float startTimeBtwShots;
     private float timeBtwShots;
 
     private Transform controllerTransform;
-    private OVRInput.Controller controllerMask;
-
-
 
     private void Awake()
     {
         ControllerStatus.OnControllerSource += UpdateOrigin;
+        practiceForLevel3.answerIs += UpdateTargetForLevel3;
     }
     private void OnDestroy()
     {
         ControllerStatus.OnControllerSource -= UpdateOrigin;
+        practiceForLevel3.answerIs -= UpdateTargetForLevel3;
     }
     private void UpdateOrigin(OVRInput.Controller controller, GameObject controllerObject)
     {
@@ -69,6 +74,65 @@ public class GenItems : MonoBehaviour
 
         deerAnimator = target1InScene.GetComponent<Animator>();
     }
+
+    public void GenerateTargetsForLevel12()
+    {
+        int positions = Random.Range(1, 3);
+
+        if (positions == 1)
+        {
+            target1InScene = Instantiate(prefabTargets[0], target_p[0].position, Quaternion.AngleAxis(230, Vector3.up));
+            target2InScene = Instantiate(prefabTargets[1], target_p[1].position, Quaternion.AngleAxis(130, Vector3.up));
+            rightAnswerTransformForRings = GameObject.FindGameObjectWithTag("rightAnswerPosition_rings").transform;
+        }
+        else if (positions == 2)
+        {
+            target1InScene = Instantiate(prefabTargets[0], target_p[1].position, Quaternion.AngleAxis(130, Vector3.up));
+            target2InScene = Instantiate(prefabTargets[1], target_p[0].position, Quaternion.AngleAxis(230, Vector3.up));
+            rightAnswerTransformForRings = GameObject.FindGameObjectWithTag("rightAnswerPosition_rings").transform;
+        }
+
+        targetAnimator = target1InScene.GetComponent<Animator>();
+    }
+
+    public void GenerateTargetsForLevel3()
+    {
+        int position = Random.Range(1, 3);
+
+        if (position == 1)
+        {
+            target1InScene = Instantiate(prefabTargets[0], target_p[0].position, Quaternion.AngleAxis(230, Vector3.up));
+            target2InScene = Instantiate(prefabTargets[1], target_p[1].position, Quaternion.AngleAxis(130, Vector3.up));
+            GetComponentsForLevel3();
+        }
+        else if (position == 2)
+        {
+            target1InScene = Instantiate(prefabTargets[0], target_p[1].position, Quaternion.AngleAxis(130, Vector3.up));
+            target2InScene = Instantiate(prefabTargets[1], target_p[0].position, Quaternion.AngleAxis(230, Vector3.up));
+            GetComponentsForLevel3();
+        }
+    }
+
+    private void UpdateTargetForLevel3(bool answerIsTarget1, bool answerIsTarget2)
+    {
+        AnswerIsTarget1 = answerIsTarget1;
+        AnswerIsTarget2 = answerIsTarget2;
+    }
+
+    private void GetComponentsForLevel3()
+    {
+        if (AnswerIsTarget1)
+        {
+            rightAnswerTransformForRings = GameObject.FindGameObjectWithTag("rightAnswerPosition_rings_1").transform;
+            targetAnimator = target1InScene.GetComponent<Animator>();
+        }
+        else if (AnswerIsTarget2)
+        {
+            rightAnswerTransformForRings = GameObject.FindGameObjectWithTag("rightAnswerPosition_rings_2").transform;
+            targetAnimator = target2InScene.GetComponent<Animator>();
+        }
+    }
+
 
     public void GenerateTrailObject()
     {
@@ -122,6 +186,39 @@ public class GenItems : MonoBehaviour
             bubbleInScene = Instantiate(bubbleParticles, bubbleTransformAnchor.position, Quaternion.AngleAxis(-90, Vector3.left));
             startBubbles = true;
         }
+    }
+
+    public void CleanGenItems_t()
+    {
+        if (deerAnimator != null)
+            deerAnimator.SetBool("isWalking", false);
+        else if (targetAnimator != null)
+            targetAnimator.SetBool("isWalking", false);
+
+        OVRInput.SetControllerVibration(0, 0, controllerMask);
+
+        if (ringInScene0 != null)
+            Destroy(ringInScene0);
+
+        if (ringInScene1 != null)
+            Destroy(ringInScene1);
+
+        if (ringInScene2 != null)
+            Destroy(ringInScene2);
+
+        if (bubbleInScene != null)
+            Destroy(bubbleInScene);
+
+        if (target1InScene != null)
+            Destroy(target1InScene);
+
+        if (target2InScene != null)
+            Destroy(target2InScene);
+
+        startRing0 = false;
+        startRing1 = false;
+        startRing2 = false;
+        startBubbles = false;
     }
 
 }

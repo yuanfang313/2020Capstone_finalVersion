@@ -6,73 +6,54 @@ using UnityEngine.UI;
 
 public class triggeringEffects : MonoBehaviour
 {
-    public static bool module1HadLoaded = false;
-    public static bool module2HadLoaded = false;
-    public static bool tutorialHadLoaded = false;
-    static bool mainMenuHadLoaded = false;
-    static bool level1HadLoaded = false;
-    static bool level2HadLoaded = false;
-    static bool level3HadLoaded = false;
-    static bool level4HadLoaded = false;
-
-    public Text moduleHadloaded;
-    public Text levelHadLoaded;
-    public AudioSource triggeringSound;
     public AudioClip triggeringClip_1, triggeringClip_2;
 
-    private string Name = null;
-    private string Tag = null;
-    private bool triggerHadPlay = false;
-    private GameObject currentHittedObject = null;
+    public static AudioSource triggeringSound;
     public static bool startTrigger = false;
     public static bool rightAnswerHitted = false;
     public static bool wrongAnswerHitted = false;
+    public static bool tutorialHadLoaded = false;
+    public static bool module1HadLoaded = false;
+    public static bool module2HadLoaded = false;
 
+    private string Name = null;
+    private string Tag = null;
+    private string rightAnswer;
+    private string distractor;
+
+    private GameObject currentHittedObject = null;
+
+    private bool Level3HadLoaded = false;
+    private bool triggerHadPlay = false;
+    private bool AnswerIstarget1 = false;
+    private bool AnswerIstarget2 = false;
 
 
     private void Awake()
     {
         ControllerStatus.TriggerDown += PlayTriggeringSound;
         PointerStatus.OnPointerUpdateForObject += PlayDependOnHittedObject;
+        practiceForLevel3.Level3HadLoaded += UpdateLevel3Status;
+        practiceForLevel3.answerIs += UpdateTarget;
     }
 
     private void Start()
     {
-        if (module1HadLoaded)
-        {
-            moduleHadloaded.text = "1"; 
-        }
-        else if (module2HadLoaded)
-        {
-            moduleHadloaded.text = "2";
-        }
-        else
-        {
-            moduleHadloaded.text = "0";
-        }
-
-        if (level1HadLoaded)
-        {
-            levelHadLoaded.text = "1";
-        } else if (level2HadLoaded)
-        {
-            levelHadLoaded.text = "2";
-        } else if (level3HadLoaded)
-        {
-            levelHadLoaded.text = "3";
-        } else if (level4HadLoaded)
-        {
-            levelHadLoaded.text = "4";
-        } else
-        {
-            levelHadLoaded.text = "0";
-        }
+        triggeringSound = GetComponent<AudioSource>();
     }
 
     private void OnDestroy()
     {
         ControllerStatus.TriggerDown -= PlayTriggeringSound;
         PointerStatus.OnPointerUpdateForObject -= PlayDependOnHittedObject;
+        practiceForLevel3.Level3HadLoaded -= UpdateLevel3Status;
+        practiceForLevel3.answerIs -= UpdateTarget;
+    }
+
+
+    private void UpdateLevel3Status(bool level3HadLoaded)
+    {
+        Level3HadLoaded = level3HadLoaded;
     }
 
     // the logic of playing triggering sound
@@ -87,164 +68,52 @@ public class triggeringEffects : MonoBehaviour
                 triggerHadPlay = true;
             }
         }
-        else if (!triggeringSound.isPlaying)
-        {  
+
+        if (!triggeringSound.isPlaying)
             startTrigger = false;
-        }
-        else
-        {
+
+        
+        if(!rightTriggerDown && !leftTriggerDown)
             triggerHadPlay = false;
-        }
     }
 
     // play the triggering sound
     private void PlaySounds()
     {
-        if (Tag != null)
-        {
-            if(currentHittedObject.tag == "navObjects" || currentHittedObject.tag == "distractor")
-                triggeringSound.PlayOneShot(triggeringClip_2);
-            else
-                triggeringSound.PlayOneShot(triggeringClip_1);
-        }
+        getAnswer();
+
+        if (currentHittedObject.tag != rightAnswer)
+            triggeringSound.PlayOneShot(triggeringClip_2);
+        else
+            triggeringSound.PlayOneShot(triggeringClip_1); 
     }
 
     private void LoadScenes()
     { 
-        if (Name != null)
+        if (Name != "Module_1" && Name != "Module_2" && Name != "Tutorial")
         {
             SceneManager.LoadScene(Name);
-            GetSceneLoaded();
         }    
-    }
-
-    private void GetSceneLoaded()
-    {
-        if(Tag == "navObjects")
+        else if (Name == "Module_1")
         {
-            switch (Name)
-            {
-                case "MainMenu":
-                    mainMenuHadLoaded = true;
-
-                    tutorialHadLoaded = false;
-                    module1HadLoaded = false;
-                    module2HadLoaded = false;
-                    level1HadLoaded = false;
-                    level2HadLoaded = false;
-                    level3HadLoaded = false;
-                    level4HadLoaded = false;
-                    break;
-                case "_Tutorial":
-                    tutorialHadLoaded = true;
-
-                    mainMenuHadLoaded = false;
-                    module1HadLoaded = false;
-                    module2HadLoaded = false;
-                    level1HadLoaded = false;
-                    level2HadLoaded = false;
-                    level3HadLoaded = false;
-                    level4HadLoaded = false;
-                    break;
-                case "Level_1-1":
-                    level1HadLoaded = true;
-                    module1HadLoaded = true;
-
-                    tutorialHadLoaded = false;
-                    mainMenuHadLoaded = false;
-                    module2HadLoaded = false;
-                    level2HadLoaded = false;
-                    level3HadLoaded = false;
-                    level4HadLoaded = false;
-                    break;
-                case "Level_1-2":
-                    level2HadLoaded = true;
-                    module1HadLoaded = true;
-
-                    tutorialHadLoaded = false;
-                    mainMenuHadLoaded = false;
-                    module2HadLoaded = false;
-                    level1HadLoaded = false;
-                    level3HadLoaded = false;
-                    level4HadLoaded = false;
-                    break;
-                case "Level_1-3":
-                    level3HadLoaded = true;
-                    module1HadLoaded = true;
-
-                    tutorialHadLoaded = false;
-                    mainMenuHadLoaded = false;
-                    module2HadLoaded = false;
-                    level2HadLoaded = false;
-                    level1HadLoaded = false;
-                    level4HadLoaded = false;
-                    break;
-                case "Level_1-4":
-                    level4HadLoaded = true;
-                    module1HadLoaded = true;
-
-                    tutorialHadLoaded = false;
-                    mainMenuHadLoaded = false;
-                    module2HadLoaded = false;
-                    level1HadLoaded = false;
-                    level2HadLoaded = false;
-                    level3HadLoaded = false;
-                    break;
-                case "Level_2-1":
-                    level1HadLoaded = true;
-                    module2HadLoaded = true;
-
-                    tutorialHadLoaded = false;
-                    mainMenuHadLoaded = false;
-                    module1HadLoaded = false;
-                    level2HadLoaded = false;
-                    level3HadLoaded = false;
-                    level4HadLoaded = false;
-                    break;
-                case "Level_2-2":
-                    level2HadLoaded = true;
-                    module2HadLoaded = true;
-
-                    tutorialHadLoaded = false;
-                    mainMenuHadLoaded = false;
-                    module1HadLoaded = false;
-                    level1HadLoaded = false;
-                    level3HadLoaded = false;
-                    level4HadLoaded = false;
-                    break;
-                case "Level_2-3":
-                    level3HadLoaded = true;
-                    module2HadLoaded = true;
-
-                    tutorialHadLoaded = false;
-                    mainMenuHadLoaded = false;
-                    module1HadLoaded = false;
-                    level1HadLoaded = false;
-                    level2HadLoaded = false;
-                    level4HadLoaded = false;
-                    break;
-                case "Level_2-4":
-                    level4HadLoaded = true;
-                    module2HadLoaded = true;
-
-                    tutorialHadLoaded = false;
-                    mainMenuHadLoaded = false;
-                    module1HadLoaded = false;
-                    level1HadLoaded = false;
-                    level2HadLoaded = false;
-                    level3HadLoaded = false;
-                    break;
-                default:
-                    tutorialHadLoaded = false;
-                    mainMenuHadLoaded = false;
-                    module1HadLoaded = false;
-                    module2HadLoaded = false;
-                    level1HadLoaded = false;
-                    level2HadLoaded = false;
-                    level3HadLoaded = false;
-                    level4HadLoaded = false;
-                    break;
-            }
+            SceneManager.LoadScene("Level_1-1");
+            tutorialHadLoaded = false;
+            module1HadLoaded = true;
+            module2HadLoaded = false;
+        }
+        else if (Name == "Module_2")
+        {
+            SceneManager.LoadScene("Level_2-1");
+            tutorialHadLoaded = false;
+            module1HadLoaded = false;
+            module2HadLoaded = true;
+        }
+        else if (Name == "Tutorial")
+        {
+            SceneManager.LoadScene("_Tutorial");
+            tutorialHadLoaded = true;
+            module1HadLoaded = false;
+            module2HadLoaded = false;
         }
     }
 
@@ -259,27 +128,61 @@ public class triggeringEffects : MonoBehaviour
             LoadScenes();
         }
 
-        getRightAnswer();
+        HitAnswer();
     }
 
-    private void getRightAnswer()
+    private void UpdateTarget (bool answerIsTarget1, bool answerIsTarget2)
     {
-        if(Tag == "rightAnswer")
+        AnswerIstarget1 = answerIsTarget1;
+        AnswerIstarget2 = answerIsTarget2;
+    }
+
+    private void getAnswer()
+    {
+        if (Level3HadLoaded)
         {
-            rightAnswerHitted = true;
+            if (AnswerIstarget1)
+            {
+                rightAnswer = "rightAnswer_1";
+                distractor = "rightAnswer_2";
+            }
+            else if (AnswerIstarget2)
+            {
+                rightAnswer = "rightAnswer_2";
+                distractor = "rightAnswer_1";
+            }
         }
         else
         {
-            rightAnswerHitted = false;
+            rightAnswer = "rightAnswer";
+            distractor = "distractor";
         }
-        if(Tag == "distractor")
+    }
+    private void HitAnswer()
+    {
+        getAnswer();
+        if (Tag == rightAnswer)
         {
-            wrongAnswerHitted = true;
+          rightAnswerHitted = true;
+          wrongAnswerHitted = false;
+        }
+        else if (Tag == distractor)
+        {
+          rightAnswerHitted = false;
+          wrongAnswerHitted = true;
         }
         else
         {
-            wrongAnswerHitted = false;
-        }
+          rightAnswerHitted = false;
+          wrongAnswerHitted = false;
+         }
+    }
+
+    public static void CleanTrigger()
+    {
+        startTrigger = false;
+        rightAnswerHitted = false;
+        wrongAnswerHitted = false;
     }
 
 }
