@@ -2014,6 +2014,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: PracticeForLevel12
       objectReference: {fileID: 0}
+    - target: {fileID: 7303100260738841254, guid: 87e224ffe2b858c43b960cf182cf29ee,
+        type: 3}
+      propertyPath: voiceClips_3.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7303100260738841254, guid: 87e224ffe2b858c43b960cf182cf29ee,
+        type: 3}
+      propertyPath: voiceClips_3.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: a238d8400be7df345bc4ab11aaa58923, type: 3}
     - target: {fileID: 7303100260738841275, guid: 87e224ffe2b858c43b960cf182cf29ee,
         type: 3}
       propertyPath: target_p.Array.data[0]

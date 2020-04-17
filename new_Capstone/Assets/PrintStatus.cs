@@ -22,11 +22,12 @@ public class PrintStatus : MonoBehaviour
 
     private bool Level12HadLoaded = false;
     private bool Level3HadLoaded = false;
+    private bool Level4HadLoaded = false;
 
     private void Awake()
     {
         practiceForLevel12.Level12HadLoaded += UpdateLevel12Status;
-        practiceForLevel3.Level3HadLoaded += UpdateLevel3Status;
+        practiceForLevel3.Level34HadLoaded += UpdateLevel34Status;
 
     }
     private void Start()
@@ -41,7 +42,7 @@ public class PrintStatus : MonoBehaviour
     private void OnDestroy()
     {
         practiceForLevel12.Level12HadLoaded -= UpdateLevel12Status;
-        practiceForLevel3.Level3HadLoaded -= UpdateLevel3Status;
+        practiceForLevel3.Level34HadLoaded -= UpdateLevel34Status;
     }
 
     private void UpdateLevel12Status(bool level12HadLoaded)
@@ -49,15 +50,16 @@ public class PrintStatus : MonoBehaviour
         Level12HadLoaded = level12HadLoaded;
     }
 
-    private void UpdateLevel3Status(bool level3HadLoaded)
+    private void UpdateLevel34Status(bool level3HadLoaded, bool level4HadLoaded)
     {
         Level3HadLoaded = level3HadLoaded;
+        Level4HadLoaded = level4HadLoaded;
     }
 
     /* printing data */
     public void PrintVoicePrompts()
     {
-        if(Level3HadLoaded)
+        if(Level3HadLoaded || Level4HadLoaded)
             voicePCounter_t.text = p_Level3.voicePromptCounter.ToString();
         else if (Level12HadLoaded)
             voicePCounter_t.text = p_Level12.voicePromptCounter.ToString();
@@ -65,7 +67,7 @@ public class PrintStatus : MonoBehaviour
 
     public void PrintVisualPrompts()
     {
-        if (Level3HadLoaded)
+        if (Level3HadLoaded || Level4HadLoaded)
             visualPCounter_t.text = p_Level3.visualPromptCounter.ToString();
         else if (Level12HadLoaded)
             visualPCounter_t.text = p_Level12.visualPromptCounter.ToString();
@@ -73,7 +75,7 @@ public class PrintStatus : MonoBehaviour
 
     public void PrintRounds()
     {
-        if(Level3HadLoaded)
+        if(Level3HadLoaded || Level4HadLoaded)
             roundCounter_t.text = p_Level3.roundCount.ToString();
         else if (Level12HadLoaded)
             roundCounter_t.text = p_Level12.roundCount.ToString();
@@ -82,7 +84,7 @@ public class PrintStatus : MonoBehaviour
     public void PrintVisualPrompts_f()
     {
         //int_visualPTempTimer_f = (int)visualPTempTimer_f;
-        if(Level3HadLoaded)
+        if(Level3HadLoaded || Level4HadLoaded)
             visualPTimer_f.text = p_Level3._visualPTempTimer_f.ToString("F1");
         else if (Level12HadLoaded)
             visualPTimer_f.text = p_Level12._visualPTempTimer_f.ToString("F1");
@@ -91,7 +93,7 @@ public class PrintStatus : MonoBehaviour
     public void PrintVisualPrompts_d()
     {
         //int_visualPTempTimer_d = (int)visualPTempTimer_d;
-        if(Level3HadLoaded)
+        if(Level3HadLoaded || Level4HadLoaded)
             visualPTimer_d.text = p_Level3._visualPTempTimer_d.ToString("F1");
         else if (Level12HadLoaded)
             visualPTimer_d.text = p_Level12._visualPTempTimer_d.ToString("F1");
@@ -99,7 +101,7 @@ public class PrintStatus : MonoBehaviour
 
     public void PrintScores()
     {
-        if (Level3HadLoaded)
+        if (Level3HadLoaded || Level4HadLoaded)
         {
             teachingScore_t.text = p_Level3.teachingScores.ToString();
             testingScores1_t.text = p_Level3.testingScores1.ToString();

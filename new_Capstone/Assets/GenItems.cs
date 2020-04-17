@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GenItems : MonoBehaviour
 {
+    public GameObject[] prefabTarget3 = new GameObject[7];
+
     public static GameObject ringInScene0, ringInScene1, ringInScene2;
     public static ParticleSystem ringParticleInScene1, ringParticleInScene2;
     public static Animator deerAnimator;
@@ -22,6 +24,7 @@ public class GenItems : MonoBehaviour
     // private region
     private GameObject target1InScene;
     private GameObject target2InScene;
+    private GameObject target3InScene;
     private GameObject trailsInScene;
     private GameObject bubbleInScene;
     
@@ -109,6 +112,55 @@ public class GenItems : MonoBehaviour
         {
             target1InScene = Instantiate(prefabTargets[0], target_p[1].position, Quaternion.AngleAxis(130, Vector3.up));
             target2InScene = Instantiate(prefabTargets[1], target_p[0].position, Quaternion.AngleAxis(230, Vector3.up));
+            GetComponentsForLevel3();
+        }
+    }
+
+    public void GenerateTargetsForLevel4()
+    {
+        int position = Random.Range(1, 7);
+        int index = (int)Random.Range(0, 7);
+
+        if (position == 1)
+        {
+            target1InScene = Instantiate(prefabTargets[0], target_p[0].position, Quaternion.AngleAxis(230, Vector3.up));
+            target2InScene = Instantiate(prefabTargets[1], target_p[1].position, Quaternion.AngleAxis(130, Vector3.up));
+            target3InScene = Instantiate(prefabTarget3[index], target_p[2].position, Quaternion.AngleAxis(150, Vector3.up));
+            GetComponentsForLevel3();
+        }
+        else if (position == 2)
+        {
+            target1InScene = Instantiate(prefabTargets[0], target_p[0].position, Quaternion.AngleAxis(230, Vector3.up));
+            target2InScene = Instantiate(prefabTargets[1], target_p[2].position, Quaternion.AngleAxis(150, Vector3.up));
+            target3InScene = Instantiate(prefabTarget3[index], target_p[1].position, Quaternion.AngleAxis(130, Vector3.up));
+            GetComponentsForLevel3();
+        }
+        else if (position == 3)
+        {
+            target1InScene = Instantiate(prefabTargets[0], target_p[1].position, Quaternion.AngleAxis(130, Vector3.up));
+            target2InScene = Instantiate(prefabTargets[1], target_p[0].position, Quaternion.AngleAxis(230, Vector3.up));
+            target3InScene = Instantiate(prefabTarget3[index], target_p[2].position, Quaternion.AngleAxis(150, Vector3.up));
+            GetComponentsForLevel3();
+        }
+        else if (position == 4)
+        {
+            target1InScene = Instantiate(prefabTargets[0], target_p[1].position, Quaternion.AngleAxis(130, Vector3.up));
+            target2InScene = Instantiate(prefabTargets[1], target_p[2].position, Quaternion.AngleAxis(150, Vector3.up));
+            target3InScene = Instantiate(prefabTarget3[index], target_p[0].position, Quaternion.AngleAxis(230, Vector3.up));
+            GetComponentsForLevel3();
+        }
+        else if (position == 5)
+        {
+            target1InScene = Instantiate(prefabTargets[0], target_p[2].position, Quaternion.AngleAxis(150, Vector3.up));
+            target2InScene = Instantiate(prefabTargets[1], target_p[1].position, Quaternion.AngleAxis(130, Vector3.up));
+            target3InScene = Instantiate(prefabTarget3[index], target_p[0].position, Quaternion.AngleAxis(230, Vector3.up));
+            GetComponentsForLevel3();
+        }
+        else if (position == 6)
+        {
+            target1InScene = Instantiate(prefabTargets[0], target_p[2].position, Quaternion.AngleAxis(150, Vector3.up));
+            target2InScene = Instantiate(prefabTargets[1], target_p[0].position, Quaternion.AngleAxis(230, Vector3.up));
+            target3InScene = Instantiate(prefabTarget3[index], target_p[1].position, Quaternion.AngleAxis(130, Vector3.up));
             GetComponentsForLevel3();
         }
     }
@@ -214,6 +266,9 @@ public class GenItems : MonoBehaviour
 
         if (target2InScene != null)
             Destroy(target2InScene);
+
+        if (target3InScene != null)
+            Destroy(target3InScene);
 
         startRing0 = false;
         startRing1 = false;

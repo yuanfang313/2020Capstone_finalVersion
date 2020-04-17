@@ -1248,7 +1248,7 @@ PrefabInstance:
     - target: {fileID: 4120183293755697908, guid: d1c06ba0abf8afa4b921aed43c318eae,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 4120183293755697908, guid: d1c06ba0abf8afa4b921aed43c318eae,
         type: 3}
@@ -2190,6 +2190,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2904657635236617164, guid: 26ac6114b0b4b8843aed0c3ecdda0c46,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904657635236617164, guid: 26ac6114b0b4b8843aed0c3ecdda0c46,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904657635236617164, guid: 26ac6114b0b4b8843aed0c3ecdda0c46,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26ac6114b0b4b8843aed0c3ecdda0c46, type: 3}
 --- !u!1001 &7232000359486777572
@@ -2332,6 +2347,11 @@ PrefabInstance:
       propertyPath: visualPromptTimer2_d
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 2413530832085069566, guid: 1605c78b39ca5494195e6f3a618af842,
+        type: 3}
+      propertyPath: passLevelTimer
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4404745818395016906, guid: 1605c78b39ca5494195e6f3a618af842,
         type: 3}
       propertyPath: m_Name
@@ -2350,7 +2370,7 @@ PrefabInstance:
     - target: {fileID: 4404745818395016907, guid: 1605c78b39ca5494195e6f3a618af842,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 4404745818395016907, guid: 1605c78b39ca5494195e6f3a618af842,
         type: 3}
@@ -2405,7 +2425,7 @@ PrefabInstance:
     - target: {fileID: 4404745818395016909, guid: 1605c78b39ca5494195e6f3a618af842,
         type: 3}
       propertyPath: voiceClips_3.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4404745818395016909, guid: 1605c78b39ca5494195e6f3a618af842,
         type: 3}
@@ -2577,6 +2597,11 @@ PrefabInstance:
       propertyPath: voiceClips_2.Array.data[5]
       value: 
       objectReference: {fileID: 8300000, guid: 619ddc3f3f721e84a9894c93374365ec, type: 3}
+    - target: {fileID: 4404745818395016909, guid: 1605c78b39ca5494195e6f3a618af842,
+        type: 3}
+      propertyPath: voiceClips_3.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: a238d8400be7df345bc4ab11aaa58923, type: 3}
     - target: {fileID: 4404745818395016912, guid: 1605c78b39ca5494195e6f3a618af842,
         type: 3}
       propertyPath: target_p.Array.data[0]
@@ -2818,6 +2843,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[Nav-Canvas]'
       objectReference: {fileID: 0}
+    - target: {fileID: 9016907367970614612, guid: 2ef769fbbcbd0854d9da53d1cb3b5084,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9016907367970614615, guid: 2ef769fbbcbd0854d9da53d1cb3b5084,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2831,7 +2861,7 @@ PrefabInstance:
     - target: {fileID: 9016907367970614615, guid: 2ef769fbbcbd0854d9da53d1cb3b5084,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.14
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 9016907367970614615, guid: 2ef769fbbcbd0854d9da53d1cb3b5084,
         type: 3}

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class practiceForLevel3 : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class practiceForLevel3 : MonoBehaviour
 
     public static string resultOfScore1_1, resultOfScore2_1, resultOfScore1_2, resultOfScore2_2, resultOfScore1_3, resultOfScore2_3;
 
-    public static UnityAction<bool> Level3HadLoaded = null;
+    public static UnityAction<bool, bool> Level34HadLoaded = null;
     public static UnityAction<bool> LevelHadPassed = null;
     public static UnityAction<bool, bool> answerIs = null;
     
@@ -61,9 +62,10 @@ public class practiceForLevel3 : MonoBehaviour
 
     #region privateBool
     private bool level3HadLoaded = false;
+    private bool level4HadLoaded = false;
     private bool[] hadPlay1 = new bool[8];
     private bool[] hadPlay2 = new bool[7];
-    private bool[] hadPlay3 = new bool[4];
+    private bool[] hadPlay3 = new bool[5];
 
     private bool generated = false;
     private bool answered = false;
@@ -92,11 +94,28 @@ public class practiceForLevel3 : MonoBehaviour
     [HideInInspector] public float _visualPTempTimer_d = 0;
     #endregion
 
+    private int nextSceneToLoad;
+    private int thisScene;
+
     private void Start()
     {
-        level3HadLoaded = true;
-        if (Level3HadLoaded != null)
-            Level3HadLoaded(level3HadLoaded);
+        thisScene = SceneManager.GetActiveScene().buildIndex;
+        nextSceneToLoad = thisScene + 1;
+        if (thisScene == 4)
+        {
+            level3HadLoaded = true;
+            level4HadLoaded = false;
+        }   
+        else if (thisScene == 5)
+        {
+            level3HadLoaded = true;
+            level4HadLoaded = false;
+        }
+            
+        if (Level34HadLoaded != null)
+            Level34HadLoaded(level3HadLoaded, level4HadLoaded);
+
+
 
         hadPlay1[0] = false;
         hadPlay1[1] = false;
@@ -118,6 +137,7 @@ public class practiceForLevel3 : MonoBehaviour
         hadPlay3[1] = false;
         hadPlay3[2] = false;
         hadPlay3[3] = false;
+        hadPlay3[4] = false;
 
         CleanTimerCounter();
         ToZero();
@@ -140,8 +160,10 @@ public class practiceForLevel3 : MonoBehaviour
 
         if (answered && answerIsCorrect)
             AnswerIsRight();
-        else if (answered && !answerIsCorrect && !hadPlay1[4] && !hadPlay2[4])
+        else if (answered && !answerIsCorrect)
             AnswerIsWrong();
+
+        LoadSceneToNextLevel();
     }
 
     private void SetupQuestion()
@@ -185,7 +207,11 @@ public class practiceForLevel3 : MonoBehaviour
         {
             if (roundHadFinished && !generated)
             {
-                genItems.GenerateTargetsForLevel3();
+                if (thisScene == 4)
+                    genItems.GenerateTargetsForLevel3();
+                else if (thisScene == 5)
+                    genItems.GenerateTargetsForLevel4();
+
                 generated = true;
                 roundHadFinished = false;
             }
@@ -234,12 +260,12 @@ public class practiceForLevel3 : MonoBehaviour
         if (answerIsCorrect && answered && !PlayVoice.voiceAudioSource.isPlaying && !triggeringEffects.triggeringSound.isPlaying)
             _rightAnswerTimer -= Time.deltaTime;
     }
-
+    
     private void CleanTimerCounter()
     {
         _welcomeTimer = welcomeTimer;
         _intervalTimer = intervalTimer;
-        _rightAnswerTimer = rightAnswerTimer;
+        _rightAnswerTimer = rightAnswerTimer; 
         _voicePTempTimer = voicePTimer1;
         _visualPTempTimer_f = visualPromptTimer1_f;
         _visualPTempTimer_d = visualPromptTimer1_d;
@@ -368,25 +394,15 @@ public class practiceForLevel3 : MonoBehaviour
                     playVoice.playVoice_3(0);
                     hadPlay3[0] = true;
                 }
-                if (roundCount == 5 && !hadPlay3[3] && !hadPlay1[6])
+                if (roundCount == 5 && !hadPlay3[3])
                 {
-                    SessionIsPassedEventHandler();
-                    if (sessionIsPassed_1 && sessionIsPassed_2)
-                    {
-                        // congratulations!
-                        playVoice.playVoice_1(6);
-                        hadPlay1[6] = true;
-                        getScores();
-                    }
-                    else
-                    {
-                        // don't worry! Let's take a break!
-                        playVoice.playVoice_3(3);
-                        hadPlay3[3] = true;
-                        cleanSession();
-                    }
+                    // don't worry! Let's take a break!
+                    playVoice.playVoice_3(3);
+                    hadPlay3[3] = true;
+                    cleanSession();   
                 }
-                if (hadPlay3[0] || hadPlay3[3] || hadPlay1[6])
+
+                if (hadPlay3[0] || hadPlay3[3])
                     cleanField();
             }
         }
@@ -419,12 +435,12 @@ public class practiceForLevel3 : MonoBehaviour
 
                 CalculateScores();
                 hadPlay1[2] = true;
-                hadPlay1[4] = true;
                 hadPlay2[4] = true;
             }
         }
 
         rightAnswerEffects();
+        hadPlay1[4] = true;
 
         if (_rightAnswerTimer <= 0 && hadPlay1[2])
         {
@@ -443,6 +459,7 @@ public class practiceForLevel3 : MonoBehaviour
                     // congratulations!
                     playVoice.playVoice_1(6);
                     hadPlay1[6] = true;
+                    
                     getScores();
                 }
                 else
@@ -455,7 +472,9 @@ public class practiceForLevel3 : MonoBehaviour
             }
         }
 
-        if (hadPlay3[0] || hadPlay3[2] || hadPlay1[6])
+        if (hadPlay3[0] || hadPlay3[2])
+            cleanField();
+        else if (hadPlay1[6] && !PlayVoice.voiceAudioSource.isPlaying)
             cleanField();
     }
 
@@ -501,8 +520,13 @@ public class practiceForLevel3 : MonoBehaviour
             }
         }
 
-        if (hadPlay1[4] || hadPlay2[4] || hadPlay1[7] || hadPlay2[6] || hadPlay1[5] || hadPlay2[5])
+        if (hadPlay1[4] || hadPlay2[4] || hadPlay1[5] || hadPlay2[5])
             cleanField();
+        else if (hadPlay1[7] || hadPlay2[6])
+        {
+            if(!PlayVoice.voiceAudioSource.isPlaying)
+                cleanField();
+        }      
     }
 
     private void CalculateScores()
@@ -551,6 +575,7 @@ public class practiceForLevel3 : MonoBehaviour
 
     private void cleanField()
     {
+        PlaySoundToNextLevel();
         genItems.CleanGenItems_t();
         CleanTimerCounter();
 
@@ -650,8 +675,8 @@ public class practiceForLevel3 : MonoBehaviour
 
     private void getScores()
     {
-        resultOfScore1_1 = "5/" + testingScores1.ToString();
-        resultOfScore2_1 = "5/" + testingScores2.ToString();
+        resultOfScore1_3 = "5/" + testingScores1.ToString();
+        resultOfScore2_3 = "5/" + testingScores2.ToString();
     }
 
     private void ToZero()
@@ -668,5 +693,25 @@ public class practiceForLevel3 : MonoBehaviour
         printStatus.PrintVisualPrompts();
         printStatus.PrintRounds();
         printStatus.PrintScores();
+    }
+
+    private void PlaySoundToNextLevel()
+    {
+        if(hadPlay1[6] || hadPlay2[6] || hadPlay1[7])
+        {
+            if (!hadPlay3[4] && !PlayVoice.voiceAudioSource.isPlaying)
+            {
+                playVoice.playVoice_3(4);
+                hadPlay3[4] = true;
+            }
+        }
+    }
+
+    private void LoadSceneToNextLevel()
+    {
+        if (hadPlay3[4] && !PlayVoice.voiceAudioSource.isPlaying)
+        {
+            SceneManager.LoadScene(nextSceneToLoad);
+        }
     }
 }

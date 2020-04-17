@@ -1115,6 +1115,16 @@ PrefabInstance:
       propertyPath: bubbleTransformAnchor
       value: 
       objectReference: {fileID: 1704464105}
+    - target: {fileID: 5966427373710206962, guid: ebd31b9fd94ac8b4e923f984f9df2c5d,
+        type: 3}
+      propertyPath: voiceClips_3.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5966427373710206962, guid: ebd31b9fd94ac8b4e923f984f9df2c5d,
+        type: 3}
+      propertyPath: voiceClips_3.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: a238d8400be7df345bc4ab11aaa58923, type: 3}
     - target: {fileID: 5966427373710206964, guid: ebd31b9fd94ac8b4e923f984f9df2c5d,
         type: 3}
       propertyPath: m_LocalPosition.x

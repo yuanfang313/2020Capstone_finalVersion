@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class practiceForTutorial : MonoBehaviour
 {
@@ -56,7 +57,7 @@ public class practiceForTutorial : MonoBehaviour
 
     #region privateBool
     private bool[] hadPlay1 = new bool[5];
-    private bool[] hadPlay3 = new bool[2];
+    private bool[] hadPlay3 = new bool[3];
    
     private bool generated = false;
     private bool answered = false;
@@ -65,6 +66,8 @@ public class practiceForTutorial : MonoBehaviour
     private bool startTrail = false;
     private bool roundHadFinished = false;
     #endregion
+
+    
 
     private void Start()
     {
@@ -76,6 +79,7 @@ public class practiceForTutorial : MonoBehaviour
 
         hadPlay3[0] = false;
         hadPlay3[1] = false;
+        hadPlay3[2] = false;
 
         CleanTimerCounter();
     }
@@ -93,10 +97,12 @@ public class practiceForTutorial : MonoBehaviour
         visualPromptTimer_fd();
         RightAnswerTimer();
 
+        LoadSceneToNextLevel();
+
         if (answered && answerIsCorrect)
             AnswerIsRight();
         else
-            return;
+            return;   
     }
 
     private void SetupQuestion()
@@ -291,7 +297,6 @@ public class practiceForTutorial : MonoBehaviour
         }
     }
 
-
     private void AnswerIsRight()
     {
         if (!hadPlay1[2] && !triggeringEffects.triggeringSound.isPlaying)
@@ -316,12 +321,15 @@ public class practiceForTutorial : MonoBehaviour
             }        
         }
 
-        if (hadPlay3[0] || hadPlay1[4])
+        if (hadPlay3[0])
+            cleanField();
+        else if (hadPlay1[4] && !PlayVoice.voiceAudioSource.isPlaying)
             cleanField();
     }
 
     private void cleanField()
     {
+        PlaySoundToNextLevel();
         genItems.CleanGenItems_t();
         CleanTimerCounter();
 
@@ -363,5 +371,25 @@ public class practiceForTutorial : MonoBehaviour
             GenItems.deerAnimator.SetBool("isWalking", true);
 
         genItems.GenerateRingObject0();
+    }
+
+    private void PlaySoundToNextLevel()
+    {
+        if (hadPlay1[4])
+        {
+            if (!hadPlay3[2] && !PlayVoice.voiceAudioSource.isPlaying)
+            {
+                playVoice.playVoice_3(2);
+                hadPlay3[2] = true;
+            }
+        }
+    }
+
+    private void LoadSceneToNextLevel()
+    {
+        if (hadPlay3[2] && !PlayVoice.voiceAudioSource.isPlaying)
+        {
+            SceneManager.LoadScene("Level_1-1");
+        }
     }
 }

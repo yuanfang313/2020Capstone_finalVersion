@@ -20,10 +20,11 @@ public class triggeringEffects : MonoBehaviour
     private string Tag = null;
     private string rightAnswer;
     private string distractor;
-
+   
     private GameObject currentHittedObject = null;
 
     private bool Level3HadLoaded = false;
+    private bool Level4HadLoaded = false;
     private bool triggerHadPlay = false;
     private bool AnswerIstarget1 = false;
     private bool AnswerIstarget2 = false;
@@ -33,7 +34,7 @@ public class triggeringEffects : MonoBehaviour
     {
         ControllerStatus.TriggerDown += PlayTriggeringSound;
         PointerStatus.OnPointerUpdateForObject += PlayDependOnHittedObject;
-        practiceForLevel3.Level3HadLoaded += UpdateLevel3Status;
+        practiceForLevel3.Level34HadLoaded += UpdateLevel34Status;
         practiceForLevel3.answerIs += UpdateTarget;
     }
 
@@ -46,14 +47,15 @@ public class triggeringEffects : MonoBehaviour
     {
         ControllerStatus.TriggerDown -= PlayTriggeringSound;
         PointerStatus.OnPointerUpdateForObject -= PlayDependOnHittedObject;
-        practiceForLevel3.Level3HadLoaded -= UpdateLevel3Status;
+        practiceForLevel3.Level34HadLoaded -= UpdateLevel34Status;
         practiceForLevel3.answerIs -= UpdateTarget;
     }
 
 
-    private void UpdateLevel3Status(bool level3HadLoaded)
+    private void UpdateLevel34Status(bool level3HadLoaded, bool level4HadLoaded)
     {
         Level3HadLoaded = level3HadLoaded;
+        Level4HadLoaded = level4HadLoaded;
     }
 
     // the logic of playing triggering sound
@@ -139,7 +141,7 @@ public class triggeringEffects : MonoBehaviour
 
     private void getAnswer()
     {
-        if (Level3HadLoaded)
+        if (Level3HadLoaded || Level4HadLoaded)
         {
             if (AnswerIstarget1)
             {
@@ -166,7 +168,7 @@ public class triggeringEffects : MonoBehaviour
           rightAnswerHitted = true;
           wrongAnswerHitted = false;
         }
-        else if (Tag == distractor)
+        else if (Tag == distractor || Tag == "distractor")
         {
           rightAnswerHitted = false;
           wrongAnswerHitted = true;
