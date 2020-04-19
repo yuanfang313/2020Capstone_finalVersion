@@ -12,6 +12,19 @@ TagManager:
   - canvasInModule1
   - navObjects
   - distractor
+  - rightAnswer
+  - rightAnswerPosition
+  - rightAnswerPosition_rings
+  - rightAnswer_1
+  - rightAnswerPosition_rings_1
+  - rightAnswerPosition_1
+  - rightAnswer_2
+  - rightAnswerPosition_2
+  - rightAnswerPosition_rings_2
+  - Tooltip_1-1
+  - Tooltip_1-2
+  - Tooltip_1-3
+  - Tooltip_1-4
   layers:
   - Default
   - TransparentFX

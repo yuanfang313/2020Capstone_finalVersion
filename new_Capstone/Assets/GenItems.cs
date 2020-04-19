@@ -123,44 +123,37 @@ public class GenItems : MonoBehaviour
 
         if (position == 1)
         {
-            target1InScene = Instantiate(prefabTargets[0], target_p[0].position, Quaternion.AngleAxis(230, Vector3.up));
-            target2InScene = Instantiate(prefabTargets[1], target_p[1].position, Quaternion.AngleAxis(130, Vector3.up));
-            target3InScene = Instantiate(prefabTarget3[index], target_p[2].position, Quaternion.AngleAxis(150, Vector3.up));
-            GetComponentsForLevel3();
+            genTarget(0, 1, 2);
         }
         else if (position == 2)
         {
-            target1InScene = Instantiate(prefabTargets[0], target_p[0].position, Quaternion.AngleAxis(230, Vector3.up));
-            target2InScene = Instantiate(prefabTargets[1], target_p[2].position, Quaternion.AngleAxis(150, Vector3.up));
-            target3InScene = Instantiate(prefabTarget3[index], target_p[1].position, Quaternion.AngleAxis(130, Vector3.up));
-            GetComponentsForLevel3();
+            genTarget(0, 2, 1);
         }
         else if (position == 3)
         {
-            target1InScene = Instantiate(prefabTargets[0], target_p[1].position, Quaternion.AngleAxis(130, Vector3.up));
-            target2InScene = Instantiate(prefabTargets[1], target_p[0].position, Quaternion.AngleAxis(230, Vector3.up));
-            target3InScene = Instantiate(prefabTarget3[index], target_p[2].position, Quaternion.AngleAxis(150, Vector3.up));
-            GetComponentsForLevel3();
+            genTarget(1, 0, 2);
         }
         else if (position == 4)
         {
-            target1InScene = Instantiate(prefabTargets[0], target_p[1].position, Quaternion.AngleAxis(130, Vector3.up));
-            target2InScene = Instantiate(prefabTargets[1], target_p[2].position, Quaternion.AngleAxis(150, Vector3.up));
-            target3InScene = Instantiate(prefabTarget3[index], target_p[0].position, Quaternion.AngleAxis(230, Vector3.up));
-            GetComponentsForLevel3();
+            genTarget(1, 2, 0);
         }
         else if (position == 5)
         {
-            target1InScene = Instantiate(prefabTargets[0], target_p[2].position, Quaternion.AngleAxis(150, Vector3.up));
-            target2InScene = Instantiate(prefabTargets[1], target_p[1].position, Quaternion.AngleAxis(130, Vector3.up));
-            target3InScene = Instantiate(prefabTarget3[index], target_p[0].position, Quaternion.AngleAxis(230, Vector3.up));
-            GetComponentsForLevel3();
+            genTarget(2, 1, 0);
         }
         else if (position == 6)
         {
-            target1InScene = Instantiate(prefabTargets[0], target_p[2].position, Quaternion.AngleAxis(150, Vector3.up));
-            target2InScene = Instantiate(prefabTargets[1], target_p[0].position, Quaternion.AngleAxis(230, Vector3.up));
-            target3InScene = Instantiate(prefabTarget3[index], target_p[1].position, Quaternion.AngleAxis(130, Vector3.up));
+            genTarget(2, 0, 1);
+        }
+
+        
+        void genTarget(int i_0, int i_1, int i_2)
+        {
+            int[] angles = {230, 130, 150};
+
+            target1InScene = Instantiate(prefabTargets[0], target_p[i_0].position, Quaternion.AngleAxis(angles[i_0], Vector3.up));
+            target2InScene = Instantiate(prefabTargets[1], target_p[i_1].position, Quaternion.AngleAxis(angles[i_1], Vector3.up));
+            target3InScene = Instantiate(prefabTarget3[index], target_p[i_2].position, Quaternion.AngleAxis(angles[i_2], Vector3.up));
             GetComponentsForLevel3();
         }
     }

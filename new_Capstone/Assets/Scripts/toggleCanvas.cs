@@ -9,11 +9,12 @@ public class toggleCanvas : MonoBehaviour
     public static bool canvas2HadOpened = false;
     public static bool canvas0HadOpened = false;
     public Transform centerEyeTransform;
+    
     public GameObject canvasInModule1;
     public GameObject canvasInModule2;
     public GameObject canvasInTutorial;
 
-    private Vector3 centerEyePosition; 
+    private Vector3 centerEyePosition;
     private Vector3 canvasPositionAnchor;
     private bool canvasHadOpened = false;
     private bool buttonIsPressed = false;
@@ -38,20 +39,22 @@ public class toggleCanvas : MonoBehaviour
 
         if (!canvasHadOpened && buttonIsPressed)
         {
+             
+
             if (triggeringEffects.module1HadLoaded)
             {
                 canvasInModule1.SetActive(true);
-                canvasInModule1.transform.position = SetCanvasPosition();
+                //canvasInModule1.transform.position = SetCanvasPosition();
                 canvas1HadOpened = true;
             } else if (triggeringEffects.module2HadLoaded)
             {
                 canvasInModule2.SetActive(true);
-                canvasInModule2.transform.position = SetCanvasPosition();
+                //canvasInModule2.transform.position = SetCanvasPosition();
                 canvas2HadOpened = true;
             } else if (triggeringEffects.tutorialHadLoaded)
             {
                 canvasInTutorial.SetActive(true);
-                canvasInTutorial.transform.position = SetCanvasPosition();
+                //canvasInTutorial.transform.position = SetCanvasPosition();
                 canvas0HadOpened = true;
             }
 
@@ -77,17 +80,17 @@ public class toggleCanvas : MonoBehaviour
     private Vector3 SetCanvasPosition()
     {
         centerEyePosition = centerEyeTransform.position;
-        float y = centerEyePosition.y - 0.75f;
-        if(y >= 0.3f)
+
+        float y = centerEyePosition.y - 0.9f;
+        if(y >= 0.4f)
         {
-            canvasPositionAnchor = new Vector3(centerEyePosition.x, y, centerEyePosition.z + 1.5f);
+            canvasPositionAnchor = new Vector3(centerEyePosition.x, y, centerEyePosition.z + 2.0f);
         }
-        else if (y < 0.3f)
+        else if (y < 0.4f)
         {
-            canvasPositionAnchor = new Vector3(centerEyePosition.x, 0.3f, centerEyePosition.z + 1.5f);
+            canvasPositionAnchor = new Vector3(centerEyePosition.x, 0.4f, centerEyePosition.z + 2.0f);
         }
         
-
         return canvasPositionAnchor;
     }
 }

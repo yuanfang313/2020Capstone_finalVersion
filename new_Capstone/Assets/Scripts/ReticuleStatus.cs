@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ReticuleStatus : MonoBehaviour
 {
     public SpriteRenderer CircleRenderer;
     public Sprite openSprite;
     public Sprite CloseSprite;
+    
 
     private new Camera camera = null;
 
