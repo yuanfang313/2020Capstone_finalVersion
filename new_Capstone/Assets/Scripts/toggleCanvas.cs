@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class toggleCanvas : MonoBehaviour
 {
-    
+
     public static bool canvas1HadOpened = false;
     public static bool canvas2HadOpened = false;
     public static bool canvas0HadOpened = false;
@@ -19,10 +19,11 @@ public class toggleCanvas : MonoBehaviour
     private bool canvasHadOpened = false;
     private bool buttonIsPressed = false;
 
+
+
     private void Awake()
     {
-        ControllerStatus.ButtonDown += buttonHadPressed;
-        
+        ControllerStatus.ButtonDown += buttonHadPressed;    
     }
     private void Start()
     {
@@ -30,7 +31,7 @@ public class toggleCanvas : MonoBehaviour
     }
     private void OnDestroy()
     {
-        ControllerStatus.ButtonDown -= buttonHadPressed;   
+        ControllerStatus.ButtonDown -= buttonHadPressed;
     }
 
     // Update is called once per frame
@@ -40,17 +41,11 @@ public class toggleCanvas : MonoBehaviour
         if (!canvasHadOpened && buttonIsPressed)
         {
              
-
             if (triggeringEffects.module1HadLoaded)
             {
                 canvasInModule1.SetActive(true);
                 //canvasInModule1.transform.position = SetCanvasPosition();
                 canvas1HadOpened = true;
-            } else if (triggeringEffects.module2HadLoaded)
-            {
-                canvasInModule2.SetActive(true);
-                //canvasInModule2.transform.position = SetCanvasPosition();
-                canvas2HadOpened = true;
             } else if (triggeringEffects.tutorialHadLoaded)
             {
                 canvasInTutorial.SetActive(true);
@@ -71,6 +66,7 @@ public class toggleCanvas : MonoBehaviour
             canvasHadOpened = false;
         }
     }
+
 
     private void buttonHadPressed (bool buttonPressed)
     {

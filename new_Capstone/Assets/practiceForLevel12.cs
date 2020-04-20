@@ -11,11 +11,13 @@ public class practiceForLevel12 : MonoBehaviour
     public GenItems genItems;
     public PrintStatus printStatus;
 
-    public static string resultOfScore1_1, resultOfScore2_1, resultOfScore1_2, resultOfScore2_2, resultOfScore1_3, resultOfScore2_3;
+    public static string scoreOfLevel1_1, scoreOfLevel1_2;
+    public static string scoreOfLevel2_1, scoreOfLevel2_2;
 
     public static UnityAction<bool> Level12HadLoaded = null;
     public static UnityAction<bool> LevelHadPassed = null;
-    public static UnityAction<string, string> resultOfLevel = null;
+    //public static UnityAction<string, string> resultOfLevel1 = null;
+    //ublic static UnityAction<string, string> resultOfLevel2 = null;
 
     #region publicTimers
     [Header("TIMERS")]
@@ -87,7 +89,7 @@ public class practiceForLevel12 : MonoBehaviour
     [HideInInspector] public float _visualPTempTimer_f = 0;
     [HideInInspector] public float _visualPTempTimer_d = 0;
     #endregion
-
+    private int thisScene;
     private int nextSceneToLoad;
 
     private void Start()
@@ -97,7 +99,8 @@ public class practiceForLevel12 : MonoBehaviour
         if (Level12HadLoaded != null)
             Level12HadLoaded(level12HadLoaded);
 
-        nextSceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
+        thisScene = SceneManager.GetActiveScene().buildIndex;
+        nextSceneToLoad = thisScene + 1;
 
         hadPlay1[0] = false;
         hadPlay1[1] = false;
@@ -581,8 +584,15 @@ public class practiceForLevel12 : MonoBehaviour
 
     private void getScores()
     {
-        resultOfScore1_1 = "5/" + testingScores1.ToString();
-        resultOfScore2_1 = "5/" + testingScores2.ToString();
+        if(thisScene == 1)
+        {
+            scoreOfLevel1_1 = "5/" + testingScores1.ToString();
+            scoreOfLevel1_2 = "5/" + testingScores2.ToString();
+        } else if (thisScene == 2)
+        {
+            scoreOfLevel2_1 = "5/" + testingScores1.ToString();
+            scoreOfLevel2_2 = "5/" + testingScores2.ToString();
+        }
     }
 
     private void ToZero()

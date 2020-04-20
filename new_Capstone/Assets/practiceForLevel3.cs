@@ -10,12 +10,15 @@ public class practiceForLevel3 : MonoBehaviour
     public GenItems genItems;
     public PrintStatus printStatus;
 
-    public static string resultOfScore1_1, resultOfScore2_1, resultOfScore1_2, resultOfScore2_2, resultOfScore1_3, resultOfScore2_3;
+    public static string scoreOfLevel3_1, scoreOfLevel3_2;
+    public static string scoreOfLevel4_1, scoreOfLevel4_2;
 
     public static UnityAction<bool, bool> Level34HadLoaded = null;
     public static UnityAction<bool> LevelHadPassed = null;
     public static UnityAction<bool, bool> answerIs = null;
-    
+    //public static UnityAction<string, string> resultOfLevel3 = null;
+    //public static UnityAction<string, string> resultOfLevel4 = null;
+
     public static UnityAction<string, string> resultOfLevel = null;
     private bool answerIsTarget1 = false;
     private bool answerIsTarget2 = false;
@@ -101,12 +104,13 @@ public class practiceForLevel3 : MonoBehaviour
     {
         thisScene = SceneManager.GetActiveScene().buildIndex;
         nextSceneToLoad = thisScene + 1;
-        if (thisScene == 4)
+
+        if (thisScene == 3)
         {
             level3HadLoaded = true;
             level4HadLoaded = false;
         }   
-        else if (thisScene == 5)
+        else if (thisScene == 4)
         {
             level3HadLoaded = true;
             level4HadLoaded = false;
@@ -114,7 +118,6 @@ public class practiceForLevel3 : MonoBehaviour
             
         if (Level34HadLoaded != null)
             Level34HadLoaded(level3HadLoaded, level4HadLoaded);
-
 
 
         hadPlay1[0] = false;
@@ -207,9 +210,9 @@ public class practiceForLevel3 : MonoBehaviour
         {
             if (roundHadFinished && !generated)
             {
-                if (thisScene == 4)
+                if (thisScene == 3)
                     genItems.GenerateTargetsForLevel3();
-                else if (thisScene == 5)
+                else if (thisScene == 4)
                     genItems.GenerateTargetsForLevel4();
 
                 generated = true;
@@ -675,8 +678,15 @@ public class practiceForLevel3 : MonoBehaviour
 
     private void getScores()
     {
-        resultOfScore1_3 = "5/" + testingScores1.ToString();
-        resultOfScore2_3 = "5/" + testingScores2.ToString();
+        if (thisScene == 3)
+        {
+            scoreOfLevel3_1 = "5/" + testingScores1.ToString();
+            scoreOfLevel3_2 = "5/" + testingScores2.ToString();
+        } else if (thisScene == 4)
+        {
+            scoreOfLevel4_1 = "5/" + testingScores1.ToString();
+            scoreOfLevel4_2 = "5/" + testingScores2.ToString();
+        }
     }
 
     private void ToZero()

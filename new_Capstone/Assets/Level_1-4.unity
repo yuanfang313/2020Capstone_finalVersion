@@ -1619,6 +1619,11 @@ PrefabInstance:
       propertyPath: centerEyeTransform
       value: 
       objectReference: {fileID: 985173997}
+    - target: {fileID: 2309103267764397307, guid: adc530032ed1c9c4cb10781b9c8b0fcd,
+        type: 3}
+      propertyPath: level34Script
+      value: 
+      objectReference: {fileID: 1018107004}
     - target: {fileID: 2383185626490617445, guid: adc530032ed1c9c4cb10781b9c8b0fcd,
         type: 3}
       propertyPath: m_Name

@@ -8,7 +8,7 @@ public class practiceForTutorial : MonoBehaviour
 {
     public PlayVoice playVoice;
     public GenItems genItems;
-    
+
     #region publicTimers
     [Header("TIMERS")]
 
@@ -65,12 +65,17 @@ public class practiceForTutorial : MonoBehaviour
     private bool startPrompts = false;
     private bool startTrail = false;
     private bool roundHadFinished = false;
+    
     #endregion
 
-    
+    private int thisScene;
+    private int nextSceneToLoad;
 
     private void Start()
     {
+        thisScene = SceneManager.GetActiveScene().buildIndex;
+        nextSceneToLoad = thisScene + 1;
+
         hadPlay1[0] = false;
         hadPlay1[1] = false;
         hadPlay1[2] = false;
@@ -389,7 +394,7 @@ public class practiceForTutorial : MonoBehaviour
     {
         if (hadPlay3[2] && !PlayVoice.voiceAudioSource.isPlaying)
         {
-            SceneManager.LoadScene("Level_1-1");
+            SceneManager.LoadScene(nextSceneToLoad);
         }
     }
 }

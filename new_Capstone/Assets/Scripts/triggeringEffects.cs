@@ -109,6 +109,7 @@ public class triggeringEffects : MonoBehaviour
             tutorialHadLoaded = false;
             module1HadLoaded = false;
             module2HadLoaded = true;
+
         }
         else if (Name == "Tutorial")
         {

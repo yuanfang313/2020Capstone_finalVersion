@@ -11,6 +11,7 @@ ScriptsOnlyBuild:
     - Oculus.Platform.PlatformSettings
     - PlayVoice
     - PointerStatus
+    - PrintResults
     - PrintStatus
     - ReticuleStatus
     - particleScript
@@ -106,6 +107,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11498}
     - Class: 114
       Script: {instanceID: 11506}
+    - Class: 114
+      Script: {instanceID: 11554}
     - Class: 114
       Script: {instanceID: 11572}
     - Class: 114
@@ -223,6 +226,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11498}
     - Class: 114
       Script: {instanceID: 11506}
+    - Class: 114
+      Script: {instanceID: 11554}
     - Class: 114
       Script: {instanceID: 11572}
     - Class: 114
@@ -345,6 +350,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11506}
     - Class: 114
+      Script: {instanceID: 11554}
+    - Class: 114
       Script: {instanceID: 11572}
     - Class: 114
       Script: {instanceID: 11598}
@@ -465,6 +472,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11498}
     - Class: 114
       Script: {instanceID: 11506}
+    - Class: 114
+      Script: {instanceID: 11554}
     - Class: 114
       Script: {instanceID: 11572}
     - Class: 114
@@ -687,6 +696,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11498}
     - Class: 114
       Script: {instanceID: 11506}
+    - Class: 114
+      Script: {instanceID: 11554}
     - Class: 114
       Script: {instanceID: 11572}
     - Class: 114
@@ -964,7 +975,7 @@ ScriptsOnlyBuild:
     className: OVRDebugHeadController
   - hash:
       serializedVersion: 2
-      Hash: 98cb481088e5f93df8b125540818ced3
+      Hash: 2b9da687874a61f1a4b160b1fe225989
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PrintResults
@@ -3005,9 +3016,9 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/MainMenu.unity
-  - Assets/_Tutorial.unity
   - Assets/Level_1-1.unity
   - Assets/Level_1-2.unity
   - Assets/Level_1-3.unity
   - Assets/Level_1-4.unity
-  playerPath: D:/Unity Project/2020Capstone_finalVersion/new_Capstone/ui1.aab
+  - Assets/_Tutorial.unity
+  playerPath: D:/Unity Project/2020Capstone_finalVersion/new_Capstone/score1.aab
