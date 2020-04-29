@@ -91,6 +91,7 @@ public class practiceForLevel12 : MonoBehaviour
     #endregion
     private int thisScene;
     private int nextSceneToLoad;
+    private GameObject talkingObject;
 
     private void Start()
     {
@@ -101,6 +102,8 @@ public class practiceForLevel12 : MonoBehaviour
 
         thisScene = SceneManager.GetActiveScene().buildIndex;
         nextSceneToLoad = thisScene + 1;
+
+        talkingObject = GameObject.FindGameObjectWithTag("talkingObject");
 
         hadPlay1[0] = false;
         hadPlay1[1] = false;
@@ -157,6 +160,7 @@ public class practiceForLevel12 : MonoBehaviour
         // play readyTouch clip
         if (!hadPlay1[1] && _intervalTimer <= 0 && roundHadFinished && roundCount < 5)
         {
+            talkingObject.SetActive(false);
             playVoice.playVoice_1(1);
             hadPlay1[1] = true;
             roundCount += 1;
@@ -396,6 +400,7 @@ public class practiceForLevel12 : MonoBehaviour
                 SessionIsPassedEventHandler();
                 if (sessionIsPassed_1 && sessionIsPassed_2)
                 {
+                    talkingObject.SetActive(true);
                     // congratulations!
                     playVoice.playVoice_1(6);
                     hadPlay1[6] = true;
@@ -498,9 +503,9 @@ public class practiceForLevel12 : MonoBehaviour
     private void cleanField()
     {
         PlaySoundToNextLevel();
-        genItems.CleanGenItems_t();
         CleanTimerCounter();
-
+        genItems.CleanGenItems_t();
+     
         printStatus.PrintVoicePrompts();
         printStatus.PrintVisualPrompts();
         printStatus.PrintVisualPrompts_f();

@@ -70,11 +70,13 @@ public class practiceForTutorial : MonoBehaviour
 
     private int thisScene;
     private int nextSceneToLoad;
+    private GameObject talkingObject;
 
     private void Start()
     {
         thisScene = SceneManager.GetActiveScene().buildIndex;
         nextSceneToLoad = thisScene + 1;
+        talkingObject = GameObject.FindGameObjectWithTag("talkingObject");
 
         hadPlay1[0] = false;
         hadPlay1[1] = false;
@@ -123,6 +125,7 @@ public class practiceForTutorial : MonoBehaviour
         // play readyTouch clip
         if(!hadPlay1[1] && _intervalTimer <= 0 && roundHadFinished && rightAnswerCount < 5)
         {
+            talkingObject.SetActive(false);
             playVoice.playVoice_1(1);
             hadPlay1[1]= true;
         }
@@ -321,6 +324,7 @@ public class practiceForTutorial : MonoBehaviour
                 hadPlay3[0] = true;
             } else if (!hadPlay1[4] && rightAnswerCount == 5)
             {
+                talkingObject.SetActive(true);
                 playVoice.playVoice_1(4);
                 hadPlay1[4] = true;
             }        

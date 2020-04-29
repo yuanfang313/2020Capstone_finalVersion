@@ -26,18 +26,6 @@ public class PrintResults : MonoBehaviour
         PrintScores();
     }
 
-    private void UpdateResultOfLevel3(string score1, string score2)
-    {
-        scoreOflevel3[0] = score1;
-        scoreOflevel3[1] = score2;
-    }
-
-    private void UpdateResultOfLevel4(string score1, string score2)
-    {
-        scoreOflevel4[0] = score1;
-        scoreOflevel4[1] = score2;
-    }
-
     private void PrintScores()
     {
         // Level1
@@ -75,7 +63,7 @@ public class PrintResults : MonoBehaviour
 
         // Level4
         if (practiceForLevel3.scoreOfLevel4_1 != null)
-            ScoreOfLevel4[0].text = scoreOflevel4[0];
+            ScoreOfLevel4[0].text = practiceForLevel3.scoreOfLevel4_1;
         else
             ScoreOfLevel4[0].text = zero;
 

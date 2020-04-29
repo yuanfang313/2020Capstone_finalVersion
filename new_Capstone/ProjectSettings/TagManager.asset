@@ -25,6 +25,7 @@ TagManager:
   - Tooltip_1-2
   - Tooltip_1-3
   - Tooltip_1-4
+  - talkingObject
   layers:
   - Default
   - TransparentFX

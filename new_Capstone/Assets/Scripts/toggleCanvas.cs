@@ -39,17 +39,23 @@ public class toggleCanvas : MonoBehaviour
     {
 
         if (!canvasHadOpened && buttonIsPressed)
-        {
-             
+        { 
             if (triggeringEffects.module1HadLoaded)
             {
                 canvasInModule1.SetActive(true);
-                //canvasInModule1.transform.position = SetCanvasPosition();
+                canvasInModule1.transform.position = SetCanvasPosition();
                 canvas1HadOpened = true;
-            } else if (triggeringEffects.tutorialHadLoaded)
+            }
+            else if (triggeringEffects.module2HadLoaded)
+            {
+                canvasInModule2.SetActive(true);
+                canvasInModule2.transform.position = SetCanvasPosition();
+                canvas2HadOpened = true;
+            }
+            else if (triggeringEffects.tutorialHadLoaded)
             {
                 canvasInTutorial.SetActive(true);
-                //canvasInTutorial.transform.position = SetCanvasPosition();
+                canvasInTutorial.transform.position = SetCanvasPosition();
                 canvas0HadOpened = true;
             }
 
@@ -80,11 +86,11 @@ public class toggleCanvas : MonoBehaviour
         float y = centerEyePosition.y - 0.9f;
         if(y >= 0.4f)
         {
-            canvasPositionAnchor = new Vector3(centerEyePosition.x, y, centerEyePosition.z + 2.0f);
+            canvasPositionAnchor = new Vector3(centerEyePosition.x, y, centerEyePosition.z + 1.5f);
         }
         else if (y < 0.4f)
         {
-            canvasPositionAnchor = new Vector3(centerEyePosition.x, 0.4f, centerEyePosition.z + 2.0f);
+            canvasPositionAnchor = new Vector3(centerEyePosition.x, 0.4f, centerEyePosition.z + 1.5f);
         }
         
         return canvasPositionAnchor;

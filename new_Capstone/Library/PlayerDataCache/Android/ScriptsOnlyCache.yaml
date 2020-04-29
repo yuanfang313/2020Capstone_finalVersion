@@ -1,6 +1,8 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - AudioSpectrum
+    - AudioSynScale
     - BtnStatus
     - ControllerStatus
     - GenItems
@@ -8,7 +10,6 @@ ScriptsOnlyBuild:
     - HoveringEffects2
     - MoveTrailAnchor
     - ONSPSettings
-    - Oculus.Platform.PlatformSettings
     - PlayVoice
     - PointerStatus
     - PrintResults
@@ -21,7 +22,10 @@ ScriptsOnlyBuild:
     - toggleCanvas
     - trailMove
     - triggeringEffects
+    Oculus.Platform.dll:
+    - Oculus.Platform.PlatformSettings
     Oculus.VR.Editor.dll:
+    - Assets.Oculus.VR.Editor.OVRPlatformToolSettings
     - OVRConfig
     Oculus.VR.dll:
     - OVRCameraRig
@@ -100,49 +104,53 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11316}
+      Script: {instanceID: 11324}
     - Class: 114
-      Script: {instanceID: 11396}
+      Script: {instanceID: 11408}
     - Class: 114
-      Script: {instanceID: 11498}
+      Script: {instanceID: 11504}
     - Class: 114
-      Script: {instanceID: 11506}
+      Script: {instanceID: 11512}
     - Class: 114
-      Script: {instanceID: 11554}
+      Script: {instanceID: 11560}
     - Class: 114
-      Script: {instanceID: 11572}
+      Script: {instanceID: 11578}
     - Class: 114
-      Script: {instanceID: 11598}
+      Script: {instanceID: 11604}
     - Class: 114
-      Script: {instanceID: 11656}
+      Script: {instanceID: 11662}
     - Class: 114
-      Script: {instanceID: 11864}
+      Script: {instanceID: 11788}
     - Class: 114
-      Script: {instanceID: 12284}
+      Script: {instanceID: 11874}
     - Class: 114
-      Script: {instanceID: 12426}
+      Script: {instanceID: 12278}
     - Class: 114
-      Script: {instanceID: 12472}
+      Script: {instanceID: 12296}
     - Class: 114
-      Script: {instanceID: 12528}
+      Script: {instanceID: 12442}
     - Class: 114
-      Script: {instanceID: 12940}
+      Script: {instanceID: 12488}
     - Class: 114
-      Script: {instanceID: 13016}
+      Script: {instanceID: 12538}
     - Class: 114
-      Script: {instanceID: 13310}
+      Script: {instanceID: 12954}
     - Class: 114
-      Script: {instanceID: 13414}
+      Script: {instanceID: 13032}
     - Class: 114
-      Script: {instanceID: 13430}
+      Script: {instanceID: 13336}
     - Class: 114
-      Script: {instanceID: 13448}
+      Script: {instanceID: 13444}
     - Class: 114
-      Script: {instanceID: 13708}
+      Script: {instanceID: 13460}
     - Class: 114
-      Script: {instanceID: 13988}
+      Script: {instanceID: 13478}
     - Class: 114
-      Script: {instanceID: 14282}
+      Script: {instanceID: 13730}
+    - Class: 114
+      Script: {instanceID: 14008}
+    - Class: 114
+      Script: {instanceID: 14302}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -219,49 +227,53 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11316}
+      Script: {instanceID: 11324}
     - Class: 114
-      Script: {instanceID: 11396}
+      Script: {instanceID: 11408}
     - Class: 114
-      Script: {instanceID: 11498}
+      Script: {instanceID: 11504}
     - Class: 114
-      Script: {instanceID: 11506}
+      Script: {instanceID: 11512}
     - Class: 114
-      Script: {instanceID: 11554}
+      Script: {instanceID: 11560}
     - Class: 114
-      Script: {instanceID: 11572}
+      Script: {instanceID: 11578}
     - Class: 114
-      Script: {instanceID: 11598}
+      Script: {instanceID: 11604}
     - Class: 114
-      Script: {instanceID: 11656}
+      Script: {instanceID: 11662}
     - Class: 114
-      Script: {instanceID: 11864}
+      Script: {instanceID: 11788}
     - Class: 114
-      Script: {instanceID: 12284}
+      Script: {instanceID: 11874}
     - Class: 114
-      Script: {instanceID: 12426}
+      Script: {instanceID: 12278}
     - Class: 114
-      Script: {instanceID: 12472}
+      Script: {instanceID: 12296}
     - Class: 114
-      Script: {instanceID: 12528}
+      Script: {instanceID: 12442}
     - Class: 114
-      Script: {instanceID: 12940}
+      Script: {instanceID: 12488}
     - Class: 114
-      Script: {instanceID: 13016}
+      Script: {instanceID: 12538}
     - Class: 114
-      Script: {instanceID: 13310}
+      Script: {instanceID: 12954}
     - Class: 114
-      Script: {instanceID: 13414}
+      Script: {instanceID: 13032}
     - Class: 114
-      Script: {instanceID: 13430}
+      Script: {instanceID: 13336}
     - Class: 114
-      Script: {instanceID: 13448}
+      Script: {instanceID: 13444}
     - Class: 114
-      Script: {instanceID: 13708}
+      Script: {instanceID: 13460}
     - Class: 114
-      Script: {instanceID: 13988}
+      Script: {instanceID: 13478}
     - Class: 114
-      Script: {instanceID: 14282}
+      Script: {instanceID: 13730}
+    - Class: 114
+      Script: {instanceID: 14008}
+    - Class: 114
+      Script: {instanceID: 14302}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -342,51 +354,55 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11316}
+      Script: {instanceID: 11324}
     - Class: 114
-      Script: {instanceID: 11396}
+      Script: {instanceID: 11408}
     - Class: 114
-      Script: {instanceID: 11498}
+      Script: {instanceID: 11504}
     - Class: 114
-      Script: {instanceID: 11506}
+      Script: {instanceID: 11512}
     - Class: 114
-      Script: {instanceID: 11554}
+      Script: {instanceID: 11560}
     - Class: 114
-      Script: {instanceID: 11572}
+      Script: {instanceID: 11578}
     - Class: 114
-      Script: {instanceID: 11598}
+      Script: {instanceID: 11604}
     - Class: 114
-      Script: {instanceID: 11656}
+      Script: {instanceID: 11662}
     - Class: 114
-      Script: {instanceID: 11864}
+      Script: {instanceID: 11788}
     - Class: 114
-      Script: {instanceID: 11960}
+      Script: {instanceID: 11874}
     - Class: 114
-      Script: {instanceID: 12284}
+      Script: {instanceID: 11970}
     - Class: 114
-      Script: {instanceID: 12426}
+      Script: {instanceID: 12278}
     - Class: 114
-      Script: {instanceID: 12472}
+      Script: {instanceID: 12296}
     - Class: 114
-      Script: {instanceID: 12528}
+      Script: {instanceID: 12442}
     - Class: 114
-      Script: {instanceID: 12940}
+      Script: {instanceID: 12488}
     - Class: 114
-      Script: {instanceID: 13016}
+      Script: {instanceID: 12538}
     - Class: 114
-      Script: {instanceID: 13310}
+      Script: {instanceID: 12954}
     - Class: 114
-      Script: {instanceID: 13414}
+      Script: {instanceID: 13032}
     - Class: 114
-      Script: {instanceID: 13430}
+      Script: {instanceID: 13336}
     - Class: 114
-      Script: {instanceID: 13448}
+      Script: {instanceID: 13444}
     - Class: 114
-      Script: {instanceID: 13708}
+      Script: {instanceID: 13460}
     - Class: 114
-      Script: {instanceID: 14028}
+      Script: {instanceID: 13478}
     - Class: 114
-      Script: {instanceID: 14282}
+      Script: {instanceID: 13730}
+    - Class: 114
+      Script: {instanceID: 14048}
+    - Class: 114
+      Script: {instanceID: 14302}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -465,51 +481,55 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11316}
+      Script: {instanceID: 11324}
     - Class: 114
-      Script: {instanceID: 11396}
+      Script: {instanceID: 11408}
     - Class: 114
-      Script: {instanceID: 11498}
+      Script: {instanceID: 11504}
     - Class: 114
-      Script: {instanceID: 11506}
+      Script: {instanceID: 11512}
     - Class: 114
-      Script: {instanceID: 11554}
+      Script: {instanceID: 11560}
     - Class: 114
-      Script: {instanceID: 11572}
+      Script: {instanceID: 11578}
     - Class: 114
-      Script: {instanceID: 11598}
+      Script: {instanceID: 11604}
     - Class: 114
-      Script: {instanceID: 11656}
+      Script: {instanceID: 11662}
     - Class: 114
-      Script: {instanceID: 11864}
+      Script: {instanceID: 11788}
     - Class: 114
-      Script: {instanceID: 11960}
+      Script: {instanceID: 11874}
     - Class: 114
-      Script: {instanceID: 12284}
+      Script: {instanceID: 11970}
     - Class: 114
-      Script: {instanceID: 12426}
+      Script: {instanceID: 12278}
     - Class: 114
-      Script: {instanceID: 12472}
+      Script: {instanceID: 12296}
     - Class: 114
-      Script: {instanceID: 12528}
+      Script: {instanceID: 12442}
     - Class: 114
-      Script: {instanceID: 12940}
+      Script: {instanceID: 12488}
     - Class: 114
-      Script: {instanceID: 13016}
+      Script: {instanceID: 12538}
     - Class: 114
-      Script: {instanceID: 13310}
+      Script: {instanceID: 12954}
     - Class: 114
-      Script: {instanceID: 13414}
+      Script: {instanceID: 13032}
     - Class: 114
-      Script: {instanceID: 13430}
+      Script: {instanceID: 13336}
     - Class: 114
-      Script: {instanceID: 13448}
+      Script: {instanceID: 13444}
     - Class: 114
-      Script: {instanceID: 13708}
+      Script: {instanceID: 13460}
     - Class: 114
-      Script: {instanceID: 14028}
+      Script: {instanceID: 13478}
     - Class: 114
-      Script: {instanceID: 14282}
+      Script: {instanceID: 13730}
+    - Class: 114
+      Script: {instanceID: 14048}
+    - Class: 114
+      Script: {instanceID: 14302}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -594,35 +614,37 @@ ScriptsOnlyBuild:
     - Class: 109
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11396}
+      Script: {instanceID: 11408}
     - Class: 114
-      Script: {instanceID: 11572}
+      Script: {instanceID: 11578}
     - Class: 114
-      Script: {instanceID: 12166}
+      Script: {instanceID: 12176}
     - Class: 114
-      Script: {instanceID: 12334}
+      Script: {instanceID: 12348}
     - Class: 114
-      Script: {instanceID: 12426}
+      Script: {instanceID: 12442}
     - Class: 114
-      Script: {instanceID: 12472}
+      Script: {instanceID: 12488}
     - Class: 114
-      Script: {instanceID: 12528}
+      Script: {instanceID: 12538}
     - Class: 114
-      Script: {instanceID: 13016}
+      Script: {instanceID: 13032}
     - Class: 114
-      Script: {instanceID: 13210}
+      Script: {instanceID: 13230}
     - Class: 114
-      Script: {instanceID: 13286}
+      Script: {instanceID: 13312}
     - Class: 114
-      Script: {instanceID: 13304}
+      Script: {instanceID: 13330}
     - Class: 114
-      Script: {instanceID: 13448}
+      Script: {instanceID: 13478}
     - Class: 114
-      Script: {instanceID: 13756}
+      Script: {instanceID: 13780}
     - Class: 114
-      Script: {instanceID: 13954}
+      Script: {instanceID: 13862}
     - Class: 114
-      Script: {instanceID: 14200}
+      Script: {instanceID: 13974}
+    - Class: 114
+      Script: {instanceID: 14222}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -689,45 +711,49 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11316}
+      Script: {instanceID: 11324}
     - Class: 114
-      Script: {instanceID: 11396}
+      Script: {instanceID: 11408}
     - Class: 114
-      Script: {instanceID: 11498}
+      Script: {instanceID: 11504}
     - Class: 114
-      Script: {instanceID: 11506}
+      Script: {instanceID: 11512}
     - Class: 114
-      Script: {instanceID: 11554}
+      Script: {instanceID: 11560}
     - Class: 114
-      Script: {instanceID: 11572}
+      Script: {instanceID: 11578}
     - Class: 114
-      Script: {instanceID: 11598}
+      Script: {instanceID: 11604}
     - Class: 114
-      Script: {instanceID: 11656}
+      Script: {instanceID: 11662}
     - Class: 114
-      Script: {instanceID: 11864}
+      Script: {instanceID: 11788}
     - Class: 114
-      Script: {instanceID: 12190}
+      Script: {instanceID: 11874}
     - Class: 114
-      Script: {instanceID: 12426}
+      Script: {instanceID: 12202}
     - Class: 114
-      Script: {instanceID: 12472}
+      Script: {instanceID: 12278}
     - Class: 114
-      Script: {instanceID: 12528}
+      Script: {instanceID: 12442}
     - Class: 114
-      Script: {instanceID: 12666}
+      Script: {instanceID: 12488}
     - Class: 114
-      Script: {instanceID: 12940}
+      Script: {instanceID: 12538}
     - Class: 114
-      Script: {instanceID: 13016}
+      Script: {instanceID: 12680}
     - Class: 114
-      Script: {instanceID: 13310}
+      Script: {instanceID: 12954}
     - Class: 114
-      Script: {instanceID: 13430}
+      Script: {instanceID: 13032}
     - Class: 114
-      Script: {instanceID: 13448}
+      Script: {instanceID: 13336}
     - Class: 114
-      Script: {instanceID: 13708}
+      Script: {instanceID: 13460}
+    - Class: 114
+      Script: {instanceID: 13478}
+    - Class: 114
+      Script: {instanceID: 13730}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -940,7 +966,7 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.VrHoops
     className: P2PNetworkGoal
   - hash:
@@ -994,7 +1020,7 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: bc85ffeddf1ca0db77ce0cd8273f284f
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.EntitlementCheck
     className: EntitlementCheck
   - hash:
@@ -1120,7 +1146,7 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 36ae7cc3e989c6df9341b63a0b042603
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.VrBoardGame
     className: BoardPosition
   - hash:
@@ -1147,6 +1173,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: GridLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AudioSpectrum
   - hash:
       serializedVersion: 2
       Hash: 2a190070f6cdfa268969e6612ffdf745
@@ -1180,7 +1212,7 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 574548a369e199ea1d83b5331c5a911b
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: 
     className: RichPresenceSample
   - hash:
@@ -1252,7 +1284,7 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 7200fc309b0ed180a81fb45217da51e4
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.VrBoardGame
     className: GameBoard
   - hash:
@@ -1390,7 +1422,7 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 1b67d4bb4648cb7d784398ebb0539b1b
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.VrBoardGame
     className: GameController
   - hash:
@@ -1414,7 +1446,7 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: c62775f7279ea30b4981a8322d28585a
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.SimplePlatformSample
     className: DataEntry
   - hash:
@@ -1467,6 +1499,12 @@ ScriptsOnlyBuild:
     className: WarpTextExample
   - hash:
       serializedVersion: 2
+      Hash: 1c696d99c003856ed81410ddaba3ee9d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AudioSynScale
+  - hash:
+      serializedVersion: 2
       Hash: cc4274b586df3c02688bac01b88bd16c
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
@@ -1480,7 +1518,7 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: e269129a92a880f5211d20d6b89e9cf1
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.VrBoardGame
     className: IAPManager
   - hash:
@@ -1540,12 +1578,12 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.VrHoops
     className: AIPlayer
   - hash:
       serializedVersion: 2
-      Hash: 1f0d54fdeae9284266d001d7b60bbc1c
+      Hash: ac4151dffef6cc80fce15e838567d1c7
     assemblyName: Oculus.VR.dll
     namespaceName: 
     className: OVROverlay
@@ -1555,6 +1593,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: ControlTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 87c6eb4a2855f06e890c8b5124d66926
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AudioSyncer
   - hash:
       serializedVersion: 2
       Hash: 8dc90e648ac06f43bdd31ac9fa8f4579
@@ -1660,7 +1704,7 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.VrHoops
     className: DetectBasket
   - hash:
@@ -1708,7 +1752,7 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 2d75dd1753213123772f51e8448cd92e
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.VrBoardGame
     className: GamePiece
   - hash:
@@ -1750,9 +1794,15 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 1eb9aed3cd6453fbc580cf51127908af
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform
     className: CallbackRunner
+  - hash:
+      serializedVersion: 2
+      Hash: b68d6fcfc0731d8945e5ef5ed7033e47
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: OVROverlayCanvas
   - hash:
       serializedVersion: 2
       Hash: 7136ccb8970d7b5b2feefcae2f0d201d
@@ -1792,7 +1842,7 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.VrHoops
     className: P2PNetworkBall
   - hash:
@@ -1846,7 +1896,7 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.VrHoops
     className: BallEjector
   - hash:
@@ -1924,7 +1974,7 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.VrHoops
     className: FlyText
   - hash:
@@ -1984,7 +2034,7 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: c62775f7279ea30b4981a8322d28585a
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.NetChat
     className: DataEntry
   - hash:
@@ -2056,7 +2106,7 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: f79d2161c56775fea247a430c491e86b
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.VrVoiceChat
     className: PlatformManager
   - hash:
@@ -2068,7 +2118,7 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.VrBoardGame
     className: PlatformManager
   - hash:
@@ -2134,7 +2184,7 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.VrHoops
     className: RemotePlayer
   - hash:
@@ -2176,13 +2226,13 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.VrHoops
     className: LocalPlayer
   - hash:
       serializedVersion: 2
       Hash: 9f7fd5f1cdce7cb0cbd6b8430ff831c1
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.VrBoardGame
     className: EyeCamera
   - hash:
@@ -2212,7 +2262,7 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 14994ae85a430e38936aa8c55b0450b2
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform
     className: PlatformSettings
   - hash:
@@ -2350,7 +2400,7 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.VrHoops
     className: PlatformManager
   - hash:
@@ -2380,7 +2430,7 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.VrHoops
     className: Camera2DController
   - hash:
@@ -2398,7 +2448,7 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 3bc1aed92f631557698cd251a40822c8
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.VrHoops
     className: PlayerArea
   - hash:
@@ -2536,7 +2586,7 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: bbf6c8bbcb3097b51034aeb2a5b7693a
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.VrHoops
     className: MatchController
   - hash:
@@ -2572,7 +2622,7 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: ce638e2dcac0548a4a3e456d5051c131
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.VrHoops
     className: GoalMover
   - hash:
@@ -2656,9 +2706,15 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 20acf3c1667c3fcaf430a03c1274c6e5
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.VrBoardGame
     className: MatchmakingManager
+  - hash:
+      serializedVersion: 2
+      Hash: c9aa7efe1b56e17a54038811e7734ad6
+    assemblyName: Oculus.VR.Editor.dll
+    namespaceName: Assets.Oculus.VR.Editor
+    className: OVRPlatformToolSettings
   - hash:
       serializedVersion: 2
       Hash: 492e4075bfded9fb3f0d520048f29f83
@@ -2722,7 +2778,7 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 393c59b202b0e7b6b9fee142f9310de1
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform
     className: VoipAudioSourceHiLevel
   - hash:
@@ -2734,7 +2790,7 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: cd06391f9225499fb9ea605ab668b015
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.VrVoiceChat
     className: VREyeRaycaster
   - hash:
@@ -2962,7 +3018,7 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: cd06391f9225499fb9ea605ab668b015
-    assemblyName: Assembly-CSharp.dll
+    assemblyName: Oculus.Platform.dll
     namespaceName: Oculus.Platform.Samples.VrHoops
     className: VREyeRaycaster
   - hash:
@@ -3021,4 +3077,4 @@ ScriptsOnlyBuild:
   - Assets/Level_1-3.unity
   - Assets/Level_1-4.unity
   - Assets/_Tutorial.unity
-  playerPath: D:/Unity Project/2020Capstone_finalVersion/new_Capstone/score1.aab
+  playerPath: D:/Unity Project/2020Capstone_finalVersion/new_Capstone/talkingP2.aab

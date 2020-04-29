@@ -99,11 +99,14 @@ public class practiceForLevel3 : MonoBehaviour
 
     private int nextSceneToLoad;
     private int thisScene;
+    private GameObject talkingObject;
 
     private void Start()
     {
         thisScene = SceneManager.GetActiveScene().buildIndex;
         nextSceneToLoad = thisScene + 1;
+
+        talkingObject = GameObject.FindGameObjectWithTag("talkingObject");
 
         if (thisScene == 3)
         {
@@ -182,6 +185,7 @@ public class practiceForLevel3 : MonoBehaviour
         // play readyTouch clip
         if (_intervalTimer <= 0 && roundHadFinished && roundCount < 5)
         {
+            talkingObject.SetActive(false);
             int Target = Random.Range(1, 3);
             if (!hadPlay1[1] && Target == 1)
             {
@@ -460,9 +464,9 @@ public class practiceForLevel3 : MonoBehaviour
                 if (sessionIsPassed_1 && sessionIsPassed_2)
                 {
                     // congratulations!
+                    talkingObject.SetActive(true);
                     playVoice.playVoice_1(6);
                     hadPlay1[6] = true;
-                    
                     getScores();
                 }
                 else
@@ -500,6 +504,8 @@ public class practiceForLevel3 : MonoBehaviour
             if (sessionIsPassed_1 && sessionIsPassed_2)
             {
                 // wrong, but congratulation!
+                talkingObject.SetActive(true);
+
                 if (answerIsTarget1)
                     playVoice.playVoice_1(7);
                 else if (answerIsTarget2)
@@ -579,8 +585,9 @@ public class practiceForLevel3 : MonoBehaviour
     private void cleanField()
     {
         PlaySoundToNextLevel();
-        genItems.CleanGenItems_t();
         CleanTimerCounter();
+        genItems.CleanGenItems_t();
+       
 
         printStatus.PrintVoicePrompts();
         printStatus.PrintVisualPrompts();
