@@ -620,6 +620,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12176}
     - Class: 114
+      Script: {instanceID: 12278}
+    - Class: 114
       Script: {instanceID: 12348}
     - Class: 114
       Script: {instanceID: 12442}
@@ -656,6 +658,10 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
       Script: {instanceID: 0}
     - Class: 212
       Script: {instanceID: 0}
@@ -2363,7 +2369,7 @@ ScriptsOnlyBuild:
     className: OVRSceneSampleController
   - hash:
       serializedVersion: 2
-      Hash: 8a2f5d45ff8dbb2efb196b31ace30aa3
+      Hash: 8aa35da14345d67fcc3da243091b6db2
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GenItems
@@ -2801,7 +2807,7 @@ ScriptsOnlyBuild:
     className: SurfaceRotation
   - hash:
       serializedVersion: 2
-      Hash: 2a39efc7045aaf767c0fb055aab58a2f
+      Hash: 47f68fc0683179b6bef7f0644e52d7d3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: practiceForLevel12
@@ -2939,7 +2945,7 @@ ScriptsOnlyBuild:
     className: PEButtonScript
   - hash:
       serializedVersion: 2
-      Hash: 59e47d24f757d988956af713fc000bd8
+      Hash: cd303cd2ee041ad3e01f1f7e2c34d068
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: HoveringEffects
@@ -3077,4 +3083,4 @@ ScriptsOnlyBuild:
   - Assets/Level_1-3.unity
   - Assets/Level_1-4.unity
   - Assets/_Tutorial.unity
-  playerPath: D:/Unity Project/2020Capstone_finalVersion/new_Capstone/talkingP2.aab
+  playerPath: D:/Unity Project/2020Capstone_finalVersion/new_Capstone/addBalloon1.aab

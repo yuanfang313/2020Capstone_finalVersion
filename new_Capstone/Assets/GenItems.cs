@@ -16,8 +16,12 @@ public class GenItems : MonoBehaviour
     public List<GameObject> prefabTargets = new List<GameObject>();
     public List<Transform> target_p = new List<Transform>();
     public Transform bubbleTransformAnchor;
+    public Transform fallingBalloonTransformAnchor;
+    public Transform raisingBalloonTransformAnchor;
     public GameObject ringEffect_0, ringEffect_1, ringEffect_2;
     public GameObject bubbleParticles;
+    public GameObject balloonFallingParticles;
+    public GameObject balloonRaisingParticles;
     public GameObject prefabTrailObject;
     
 
@@ -27,6 +31,9 @@ public class GenItems : MonoBehaviour
     private GameObject target3InScene;
     private GameObject trailsInScene;
     private GameObject bubbleInScene;
+    private GameObject fallingBalloonInScene;
+    private GameObject raisingBalloonInScene;
+    
     
     private ParticleSystem[] ringParticleInScene0;
     
@@ -36,6 +43,7 @@ public class GenItems : MonoBehaviour
     private bool startRing1 = false;
     private bool startRing2 = false;
     private bool startBubbles = false;
+    private bool startBalloons = false;
     private bool AnswerIsTarget1 = false;
     private bool AnswerIsTarget2 = false;
 
@@ -232,6 +240,25 @@ public class GenItems : MonoBehaviour
             startBubbles = true;
         }
     }
+    // generate balloons
+    public void GenerateFallingBalloons()
+    {
+        if (!startBalloons)
+        {
+            fallingBalloonInScene = Instantiate(balloonFallingParticles, fallingBalloonTransformAnchor.position, Quaternion.AngleAxis(90, Vector3.left));
+            startBalloons = true;
+        }
+    }
+
+    public void GenerateRaisingBalloons()
+    {
+        if (!startBalloons)
+        {
+            raisingBalloonInScene = Instantiate(balloonRaisingParticles, raisingBalloonTransformAnchor.position, Quaternion.identity);
+            startBalloons = true;
+            Destroy(raisingBalloonInScene, 9.0f);
+        }
+    }
 
     public void CleanGenItems_t()
     {
@@ -254,6 +281,9 @@ public class GenItems : MonoBehaviour
         if (bubbleInScene != null)
             Destroy(bubbleInScene);
 
+        if (raisingBalloonInScene != null)
+            Destroy(raisingBalloonInScene);
+        
         if (target1InScene != null)
             Destroy(target1InScene);
 
@@ -266,7 +296,9 @@ public class GenItems : MonoBehaviour
         startRing0 = false;
         startRing1 = false;
         startRing2 = false;
+       
         startBubbles = false;
+        startBalloons = false;
     }
 
 }

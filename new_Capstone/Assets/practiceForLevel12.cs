@@ -48,6 +48,8 @@ public class practiceForLevel12 : MonoBehaviour
 
     [Tooltip("visualPromptTimer2_d is the second timer of the duration of the visual prompts")]
     [SerializeField] private float visualPromptTimer2_d = 0;
+
+    public float balloonTimer = 0;
     #endregion
 
     #region privateTimers
@@ -55,6 +57,8 @@ public class practiceForLevel12 : MonoBehaviour
     private float _intervalTimer = 0;
     private float _rightAnswerTimer = 0;
     private float _voicePTempTimer = 0;
+
+    private float _balloonTimer = 0;
     #endregion
 
     #region privateBool
@@ -75,6 +79,7 @@ public class practiceForLevel12 : MonoBehaviour
     private bool sessionHadFinished = false;
     private bool sessionHadStarted_2 = false;
     private bool levelHadPassed = false;
+    private bool breakStarted = false;
     #endregion
 
     #region printedArea
@@ -138,6 +143,12 @@ public class practiceForLevel12 : MonoBehaviour
         voicePromptTimer();
         visualPromptTimer_fd();
         RightAnswerTimer();
+        BalloonTimer();
+
+        if (_balloonTimer <= 0)
+        {
+            genItems.GenerateRaisingBalloons();
+        }
 
         if (answered && answerIsCorrect)
             AnswerIsRight();
@@ -161,6 +172,7 @@ public class practiceForLevel12 : MonoBehaviour
         if (!hadPlay1[1] && _intervalTimer <= 0 && roundHadFinished && roundCount < 5)
         {
             talkingObject.SetActive(false);
+            breakStarted = false;
             playVoice.playVoice_1(1);
             hadPlay1[1] = true;
             roundCount += 1;
@@ -216,11 +228,20 @@ public class practiceForLevel12 : MonoBehaviour
             _rightAnswerTimer -= Time.deltaTime;
     }
 
+    private void BalloonTimer()
+    {
+        if (breakStarted)
+            _balloonTimer -= Time.deltaTime;
+        else if(!breakStarted)
+            _balloonTimer = balloonTimer;
+    }
+
     private void CleanTimerCounter()
     {
         _welcomeTimer = welcomeTimer;
         _intervalTimer = intervalTimer;
         _rightAnswerTimer = rightAnswerTimer;
+        _balloonTimer = balloonTimer;
         _voicePTempTimer = voicePTimer1;
         _visualPTempTimer_f = visualPromptTimer1_f;
         _visualPTempTimer_d = visualPromptTimer1_d;
@@ -346,6 +367,7 @@ public class practiceForLevel12 : MonoBehaviour
                 if(roundCount == 5 && !hadPlay3[3])
                 {
                     // don't worry! Let's take a break!
+                    talkingObject.SetActive(true);
                     playVoice.playVoice_3(3);
                     hadPlay3[3] = true;
                     cleanSession();      
@@ -409,8 +431,9 @@ public class practiceForLevel12 : MonoBehaviour
                 else
                 {
                     // greate! Let's take a break!
+                    talkingObject.SetActive(true);
                     playVoice.playVoice_3(2);
-                    hadPlay3[2] = true;
+                    hadPlay3[2] = true; 
                     cleanSession();
                 }
             }
@@ -443,6 +466,7 @@ public class practiceForLevel12 : MonoBehaviour
             else
             {
                 // wrong, let's take a break!
+                talkingObject.SetActive(true);
                 playVoice.playVoice_1(5);
                 hadPlay1[5] = true;
                 cleanSession();
@@ -505,7 +529,18 @@ public class practiceForLevel12 : MonoBehaviour
         PlaySoundToNextLevel();
         CleanTimerCounter();
         genItems.CleanGenItems_t();
-     
+
+        if (hadPlay3[2] || hadPlay3[3] || hadPlay1[5])
+        {
+            breakStarted = true;        
+        }
+
+        if (hadPlay1[7] || hadPlay1[6])
+        {
+            genItems.GenerateBubbles();
+            genItems.GenerateFallingBalloons();
+        }
+
         printStatus.PrintVoicePrompts();
         printStatus.PrintVisualPrompts();
         printStatus.PrintVisualPrompts_f();
