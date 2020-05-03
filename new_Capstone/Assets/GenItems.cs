@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GenItems : MonoBehaviour
 {
-    public GameObject[] prefabTarget3 = new GameObject[7];
-
+    
+    public GameObject[] prefabTarget3 = new GameObject[4];
     public static GameObject ringInScene0, ringInScene1, ringInScene2;
     public static ParticleSystem ringParticleInScene1, ringParticleInScene2;
     public static Animator deerAnimator;
@@ -127,7 +127,7 @@ public class GenItems : MonoBehaviour
     public void GenerateTargetsForLevel4()
     {
         int position = Random.Range(1, 7);
-        int index = (int)Random.Range(0, 7);
+        int index = (int)Random.Range(0, 4);
 
         if (position == 1)
         {
@@ -293,6 +293,7 @@ public class GenItems : MonoBehaviour
         if (target3InScene != null)
             Destroy(target3InScene);
 
+            
         startRing0 = false;
         startRing1 = false;
         startRing2 = false;

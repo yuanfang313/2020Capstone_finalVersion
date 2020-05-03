@@ -11,8 +11,10 @@ public class toggleCanvas : MonoBehaviour
     public Transform centerEyeTransform;
     
     public GameObject canvasInModule1;
-    public GameObject canvasInModule2;
-    public GameObject canvasInTutorial;
+    //public GameObject canvasInModule2;
+    //public GameObject canvasInTutorial;
+
+    public List<GameObject> tooltip = new List<GameObject>();
 
     private Vector3 centerEyePosition;
     private Vector3 canvasPositionAnchor;
@@ -40,36 +42,46 @@ public class toggleCanvas : MonoBehaviour
 
         if (!canvasHadOpened && buttonIsPressed)
         { 
-            if (triggeringEffects.module1HadLoaded)
+            if (triggeringEffects.module1HadLoaded || triggeringEffects.tutorialHadLoaded)
             {
                 canvasInModule1.SetActive(true);
                 canvasInModule1.transform.position = SetCanvasPosition();
                 canvas1HadOpened = true;
             }
+            /*
             else if (triggeringEffects.module2HadLoaded)
             {
                 canvasInModule2.SetActive(true);
                 canvasInModule2.transform.position = SetCanvasPosition();
                 canvas2HadOpened = true;
             }
+            
             else if (triggeringEffects.tutorialHadLoaded)
             {
                 canvasInTutorial.SetActive(true);
                 canvasInTutorial.transform.position = SetCanvasPosition();
                 canvas0HadOpened = true;
-            }
+            }*/
 
             canvasHadOpened = true;
         }
         else if (canvasHadOpened && buttonIsPressed)
         {
             canvasInModule1.SetActive(false);
-            canvasInModule2.SetActive(false);
-            canvasInTutorial.SetActive(false);
+            //canvasInModule2.SetActive(false);
+            //canvasInTutorial.SetActive(false);
             canvas1HadOpened = false;
             canvas2HadOpened = false;
             canvas0HadOpened = false;
             canvasHadOpened = false;
+        }
+
+        if (!canvasHadOpened)
+        {
+            tooltip[0].SetActive(false);
+            tooltip[1].SetActive(false);
+            tooltip[2].SetActive(false);
+            tooltip[3].SetActive(false);
         }
     }
 

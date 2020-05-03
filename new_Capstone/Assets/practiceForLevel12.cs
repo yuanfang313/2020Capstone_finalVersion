@@ -49,7 +49,8 @@ public class practiceForLevel12 : MonoBehaviour
     [Tooltip("visualPromptTimer2_d is the second timer of the duration of the visual prompts")]
     [SerializeField] private float visualPromptTimer2_d = 0;
 
-    public float balloonTimer = 0;
+    [Tooltip("balloonTimer is the timer to control when to release the raising balloons during the break")]
+    [SerializeField] private float balloonTimer = 0;
     #endregion
 
     #region privateTimers

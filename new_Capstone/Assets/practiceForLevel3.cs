@@ -54,6 +54,9 @@ public class practiceForLevel3 : MonoBehaviour
 
     [Tooltip("visualPromptTimer2_d is the second timer of the duration of the visual prompts")]
     [SerializeField] private float visualPromptTimer2_d = 0;
+
+    [Tooltip("balloonTimer is the timer to control when to release the raising balloons during the break")]
+    [SerializeField] private float balloonTimer = 0;
     #endregion
 
     #region privateTimers
@@ -61,6 +64,8 @@ public class practiceForLevel3 : MonoBehaviour
     private float _intervalTimer = 0;
     private float _rightAnswerTimer = 0;
     private float _voicePTempTimer = 0;
+
+    private float _balloonTimer = 0;
     #endregion
 
     #region privateBool
@@ -82,6 +87,7 @@ public class practiceForLevel3 : MonoBehaviour
     private bool transmitScores = false;
     private bool sessionHadFinished = false;
     private bool sessionHadStarted_2 = false;
+    private bool breakStarted = false;
     #endregion
 
     #region printedArea
@@ -163,6 +169,13 @@ public class practiceForLevel3 : MonoBehaviour
         voicePromptTimer();
         visualPromptTimer_fd();
         RightAnswerTimer();
+        BalloonTimer();
+
+        if (_balloonTimer <= 0)
+        {
+            genItems.GenerateRaisingBalloons();
+        }
+
 
         if (answered && answerIsCorrect)
             AnswerIsRight();
@@ -186,6 +199,8 @@ public class practiceForLevel3 : MonoBehaviour
         if (_intervalTimer <= 0 && roundHadFinished && roundCount < 5)
         {
             talkingObject.SetActive(false);
+            breakStarted = false;
+
             int Target = Random.Range(1, 3);
             if (!hadPlay1[1] && Target == 1)
             {
@@ -267,12 +282,21 @@ public class practiceForLevel3 : MonoBehaviour
         if (answerIsCorrect && answered && !PlayVoice.voiceAudioSource.isPlaying && !triggeringEffects.triggeringSound.isPlaying)
             _rightAnswerTimer -= Time.deltaTime;
     }
-    
+
+    private void BalloonTimer()
+    {
+        if (breakStarted)
+            _balloonTimer -= Time.deltaTime;
+        else if (!breakStarted)
+            _balloonTimer = balloonTimer;
+    }
+
     private void CleanTimerCounter()
     {
         _welcomeTimer = welcomeTimer;
         _intervalTimer = intervalTimer;
-        _rightAnswerTimer = rightAnswerTimer; 
+        _rightAnswerTimer = rightAnswerTimer;
+        _balloonTimer = balloonTimer;
         _voicePTempTimer = voicePTimer1;
         _visualPTempTimer_f = visualPromptTimer1_f;
         _visualPTempTimer_d = visualPromptTimer1_d;
@@ -404,6 +428,7 @@ public class practiceForLevel3 : MonoBehaviour
                 if (roundCount == 5 && !hadPlay3[3])
                 {
                     // don't worry! Let's take a break!
+                    talkingObject.SetActive(true);
                     playVoice.playVoice_3(3);
                     hadPlay3[3] = true;
                     cleanSession();   
@@ -472,6 +497,7 @@ public class practiceForLevel3 : MonoBehaviour
                 else
                 {
                     // greate! Let's take a break!
+                    talkingObject.SetActive(true);
                     playVoice.playVoice_3(2);
                     hadPlay3[2] = true;
                     cleanSession();
@@ -518,6 +544,8 @@ public class practiceForLevel3 : MonoBehaviour
             else
             {
                 // wrong, let's take a break!
+                talkingObject.SetActive(true);
+
                 if (answerIsTarget1)
                     playVoice.playVoice_1(5);
                 else if (answerIsTarget2)
@@ -587,7 +615,17 @@ public class practiceForLevel3 : MonoBehaviour
         PlaySoundToNextLevel();
         CleanTimerCounter();
         genItems.CleanGenItems_t();
+
+        if (hadPlay1[5] || hadPlay2[5] || hadPlay3[2] || hadPlay3[3])
+        {
+            breakStarted = true;
+        }
        
+        if (hadPlay1[6] || hadPlay1[7] || hadPlay2[6])
+        {
+            genItems.GenerateBubbles();
+            genItems.GenerateFallingBalloons();
+        }
 
         printStatus.PrintVoicePrompts();
         printStatus.PrintVisualPrompts();
@@ -728,7 +766,7 @@ public class practiceForLevel3 : MonoBehaviour
     {
         if (hadPlay3[4] && !PlayVoice.voiceAudioSource.isPlaying)
         {
-            SceneManager.LoadScene(nextSceneToLoad);
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }

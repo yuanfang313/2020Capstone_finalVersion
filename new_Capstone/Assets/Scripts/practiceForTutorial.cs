@@ -69,13 +69,13 @@ public class practiceForTutorial : MonoBehaviour
     #endregion
 
     private int thisScene;
-    private int nextSceneToLoad;
+    //private int nextSceneToLoad;
     private GameObject talkingObject;
 
     private void Start()
     {
         thisScene = SceneManager.GetActiveScene().buildIndex;
-        nextSceneToLoad = thisScene + 1;
+        //nextSceneToLoad = thisScene + 1;
         talkingObject = GameObject.FindGameObjectWithTag("talkingObject");
 
         hadPlay1[0] = false;
@@ -342,6 +342,12 @@ public class practiceForTutorial : MonoBehaviour
         genItems.CleanGenItems_t();
         CleanTimerCounter();
 
+        if (hadPlay1[4])
+        {
+            genItems.GenerateBubbles();
+            genItems.GenerateFallingBalloons();
+        }
+
         hadPlay1[1] = false;
         hadPlay1[2] = false;
         hadPlay1[3] = false;
@@ -398,7 +404,7 @@ public class practiceForTutorial : MonoBehaviour
     {
         if (hadPlay3[2] && !PlayVoice.voiceAudioSource.isPlaying)
         {
-            SceneManager.LoadScene(nextSceneToLoad);
+            SceneManager.LoadScene("Level_1-1");
         }
     }
 }

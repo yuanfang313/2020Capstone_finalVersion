@@ -6,10 +6,10 @@ public class HoveringEffects2 : MonoBehaviour
 {
     public AudioSource audioSource_hover2;
     private bool hadHit = false;
-
+    
     private void OnTriggerEnter(Collider other)
     {
-        if (!hadHit)
+        if (!hadHit && other.tag == "reticuleCollider")
         {
             audioSource_hover2.Play();
             hadHit = true;

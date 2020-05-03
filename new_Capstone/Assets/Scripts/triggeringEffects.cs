@@ -29,7 +29,6 @@ public class triggeringEffects : MonoBehaviour
     private bool AnswerIstarget1 = false;
     private bool AnswerIstarget2 = false;
 
-
     private void Awake()
     {
         ControllerStatus.TriggerDown += PlayTriggeringSound;
@@ -69,14 +68,17 @@ public class triggeringEffects : MonoBehaviour
                 PlaySounds();
                 triggerHadPlay = true;
             }
-        }
+        } 
 
         if (!triggeringSound.isPlaying)
-            startTrigger = false;
-
-        
+        {
+            startTrigger = false;  
+        }
+            
         if(!rightTriggerDown && !leftTriggerDown)
+        {
             triggerHadPlay = false;
+        }      
     }
 
     // play the triggering sound
@@ -87,7 +89,8 @@ public class triggeringEffects : MonoBehaviour
         if (currentHittedObject.tag != rightAnswer)
             triggeringSound.PlayOneShot(triggeringClip_2);
         else
-            triggeringSound.PlayOneShot(triggeringClip_1); 
+            triggeringSound.PlayOneShot(triggeringClip_1);
+
     }
 
     private void LoadScenes()
@@ -109,7 +112,6 @@ public class triggeringEffects : MonoBehaviour
             tutorialHadLoaded = false;
             module1HadLoaded = false;
             module2HadLoaded = true;
-
         }
         else if (Name == "Tutorial")
         {
