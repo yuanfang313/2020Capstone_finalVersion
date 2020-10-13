@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class triggeringEffects : MonoBehaviour
 {
     public AudioClip triggeringClip_1, triggeringClip_2;
 
+    public static UnityAction<bool> resetBtnHadHited;
     public static AudioSource triggeringSound;
     public static bool startTrigger = false;
     public static bool rightAnswerHitted = false;
     public static bool wrongAnswerHitted = false;
-    public static bool tutorialHadLoaded = false;
-    public static bool module1HadLoaded = false;
-    public static bool module2HadLoaded = false;
+
 
     private string Name = null;
     private string Tag = null;
@@ -25,16 +25,18 @@ public class triggeringEffects : MonoBehaviour
 
     private bool Level3HadLoaded = false;
     private bool Level4HadLoaded = false;
-    private bool triggerHadPlay = false;
+    private bool soundHadPlay = false;
     private bool AnswerIstarget1 = false;
     private bool AnswerIstarget2 = false;
+    private bool ResetBtnHited = false;
+
 
     private void Awake()
     {
-        ControllerStatus.TriggerDown += PlayTriggeringSound;
-        PointerStatus.OnPointerUpdateForObject += PlayDependOnHittedObject;
+        ControllerStatus.TriggerDown += checkTrigger;
+        PointerStatus.OnPointerUpdateForObject += updateHittedObject;
         practiceForLevel3.Level34HadLoaded += UpdateLevel34Status;
-        practiceForLevel3.answerIs += UpdateTarget;
+        practiceForLevel3.answerIs += UpdateAnswer;
     }
 
     private void Start()
@@ -44,41 +46,57 @@ public class triggeringEffects : MonoBehaviour
 
     private void OnDestroy()
     {
-        ControllerStatus.TriggerDown -= PlayTriggeringSound;
-        PointerStatus.OnPointerUpdateForObject -= PlayDependOnHittedObject;
+        ControllerStatus.TriggerDown -= checkTrigger;
+        PointerStatus.OnPointerUpdateForObject -= updateHittedObject;
         practiceForLevel3.Level34HadLoaded -= UpdateLevel34Status;
-        practiceForLevel3.answerIs -= UpdateTarget;
+        practiceForLevel3.answerIs -= UpdateAnswer;
     }
 
-
-    private void UpdateLevel34Status(bool level3HadLoaded, bool level4HadLoaded)
-    {
-        Level3HadLoaded = level3HadLoaded;
-        Level4HadLoaded = level4HadLoaded;
-    }
-
-    // the logic of playing triggering sound
-    private void PlayTriggeringSound (bool rightTriggerDown, bool leftTriggerDown)
+    // check trigger
+    private void checkTrigger (bool rightTriggerDown, bool leftTriggerDown)
     {
         if(rightTriggerDown || leftTriggerDown)
         {
             startTrigger = true;
-            if (!triggerHadPlay)
-            { 
+            if (!soundHadPlay)
+            {
                 PlaySounds();
-                triggerHadPlay = true;
+                soundHadPlay = true;
             }
-        } 
+        }
 
         if (!triggeringSound.isPlaying)
         {
-            startTrigger = false;  
+            startTrigger = false;
         }
-            
-        if(!rightTriggerDown && !leftTriggerDown)
+
+        if (!rightTriggerDown && !leftTriggerDown)
         {
-            triggerHadPlay = false;
-        }      
+            soundHadPlay = false;
+        }
+    }
+    // check hitted obj
+    private void updateHittedObject(GameObject hitObject)
+    {
+        currentHittedObject = hitObject;
+        Name = hitObject.name;
+        Tag = hitObject.tag;
+        // when trigger navObj
+        if (startTrigger && !triggeringSound.isPlaying)
+        {
+            LoadScenes();
+            resetScore();
+            if (resetBtnHadHited != null)
+                resetBtnHadHited(ResetBtnHited);
+        }
+        else
+        {
+            ResetBtnHited = false;
+            if (resetBtnHadHited != null)
+                resetBtnHadHited(ResetBtnHited);
+        }
+        // when trigger tarObj
+        HitAnswer();
     }
 
     // play the triggering sound
@@ -93,55 +111,33 @@ public class triggeringEffects : MonoBehaviour
 
     }
 
+    // when trigger navObj
     private void LoadScenes()
     { 
-        if (Name != "Module_1" && Name != "Module_2" && Name != "Tutorial")
+        if (Name != "Btn_reset")
         {
             SceneManager.LoadScene(Name);
         }    
-        else if (Name == "Module_1")
-        {
-            SceneManager.LoadScene("Level_1-1");
-            tutorialHadLoaded = false;
-            module1HadLoaded = true;
-            module2HadLoaded = false;
-        }
-        else if (Name == "Module_2")
-        {
-            SceneManager.LoadScene("Level_2-1");
-            tutorialHadLoaded = false;
-            module1HadLoaded = false;
-            module2HadLoaded = true;
-        }
-        else if (Name == "Tutorial")
-        {
-            SceneManager.LoadScene("_Tutorial");
-            tutorialHadLoaded = true;
-            module1HadLoaded = false;
-            module2HadLoaded = false;
-        }
     }
-
-    private void PlayDependOnHittedObject(GameObject hitObject)
+    private void resetScore()
     {
-        currentHittedObject = hitObject;
-        Name = hitObject.name;
-        Tag = hitObject.tag;
-
-        if(startTrigger && !triggeringSound.isPlaying)
-        {
-            LoadScenes();
-        }
-
-        HitAnswer();
+        if (Name == "Btn_reset")
+            ResetBtnHited = true;
+        else
+            ResetBtnHited = false;
     }
 
-    private void UpdateTarget (bool answerIsTarget1, bool answerIsTarget2)
+    // when trigger tarObj
+    private void UpdateLevel34Status(bool level3HadLoaded, bool level4HadLoaded)
+    {
+        Level3HadLoaded = level3HadLoaded;
+        Level4HadLoaded = level4HadLoaded;
+    }
+    private void UpdateAnswer (bool answerIsTarget1, bool answerIsTarget2)
     {
         AnswerIstarget1 = answerIsTarget1;
         AnswerIstarget2 = answerIsTarget2;
     }
-
     private void getAnswer()
     {
         if (Level3HadLoaded || Level4HadLoaded)
@@ -182,6 +178,7 @@ public class triggeringEffects : MonoBehaviour
           wrongAnswerHitted = false;
          }
     }
+
 
     public static void CleanTrigger()
     {

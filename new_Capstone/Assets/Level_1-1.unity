@@ -325,7 +325,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 0, z: -4}
+  m_LocalPosition: {x: 0, y: 10, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1075190298}
@@ -713,6 +713,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: talkingObject
       objectReference: {fileID: 0}
+    - target: {fileID: 716995407755901923, guid: 480111ac239dfb2499d8726bceb8f96a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 718902114568131949, guid: 480111ac239dfb2499d8726bceb8f96a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -767,6 +772,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4990126928129732796, guid: 480111ac239dfb2499d8726bceb8f96a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4990126929037180192, guid: 480111ac239dfb2499d8726bceb8f96a,
         type: 3}
@@ -1210,7 +1220,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2090919793
 Transform:
@@ -1362,7 +1372,7 @@ PrefabInstance:
     - target: {fileID: 2267221884542956763, guid: 1d39ebbad68d08e4ca05fee94749a64b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2267221884542956763, guid: 1d39ebbad68d08e4ca05fee94749a64b,
         type: 3}
@@ -1581,7 +1591,7 @@ PrefabInstance:
     - target: {fileID: 120865480518532921, guid: 7ba0b12762a719847a89c68872cc11b3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 120865480518532921, guid: 7ba0b12762a719847a89c68872cc11b3,
         type: 3}
@@ -1907,7 +1917,7 @@ Transform:
   - {fileID: 2090919793}
   - {fileID: 1639054854}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3603608448858937690
 Transform:

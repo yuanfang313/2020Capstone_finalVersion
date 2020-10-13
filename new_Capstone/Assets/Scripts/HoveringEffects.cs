@@ -3,54 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HoveringEffects : MonoBehaviour
-{
-    public AudioSource audioSource_hover;
+{ 
     public GameObject portalParticle;
-    public Transform originalTransform;
+    public Sprite sprite_Original;
+    public Sprite sprite_Hovered;
+    public bool hadHit = false;
 
-    public SpriteRenderer BtnSpriteRenderer;
-    public Sprite OriginalBtn;
-    public Sprite HoveredBtn;
-
-    private Vector3 changedScaleForPlay;
-    private Vector3 changedScaleForTutorial;
+    private SpriteRenderer BtnSpriteRenderer;
+    private Transform originalTransform;
+    private AudioSource audioSource_hover;
     private Vector3 originalScale;
-    private float maxTimer = 1.0f;
-    private float _tempTimer = 0f;
-    private bool direction;
-    private bool hadHit = false;
-
+   
     private void Start()
     {
-        if(this.name == "Tutorial")
-        {
-            direction = false;
-        } else
-        {
-            direction = true;
-        }
-
         portalParticle.SetActive(false);
-        originalScale = transform.localScale;
-        changedScaleForPlay = new Vector3 (2.7f, 2.7f, 2.7f);
-        changedScaleForTutorial = new Vector3 (1.9f, 1.9f, 1.9f); 
-    }
-    private void Update()
-    {
-        MoveUpAndDown();
-    }
 
+        originalTransform = transform;
+        originalScale = transform.localScale;
+        BtnSpriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource_hover = GetComponent<AudioSource>();
+    }
+ 
     private void OnTriggerEnter(Collider other)
     {
-        if (this.name == "Tutorial")
-            transform.localScale = changedScaleForTutorial;
-        else if(this.name == "Module_1")
-            transform.localScale = changedScaleForPlay;
 
-        BtnSpriteRenderer.sprite = HoveredBtn;
+        BtnSpriteRenderer.sprite = sprite_Hovered;
 
         if (!hadHit)
         {
+            transform.localScale = transform.localScale * 1.1f;
             portalParticle.SetActive(true);
             audioSource_hover.Play();
             hadHit = true;
@@ -59,33 +40,11 @@ public class HoveringEffects : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        BtnSpriteRenderer.sprite = OriginalBtn;
+        BtnSpriteRenderer.sprite = sprite_Original;
         portalParticle.SetActive(false);
         transform.localScale = originalScale;
         hadHit = false;  
     }
 
-    private void MoveUpAndDown()
-    {
-        float speedScale = Mathf.Pow(Mathf.Abs(_tempTimer - maxTimer / 2f), 0.5f) * 0.5f + 0.1f;
-
-        _tempTimer += Time.deltaTime;
-        if (_tempTimer > maxTimer)
-        {
-            _tempTimer = 0f;
-            direction = !direction;
-        }
-        if (!hadHit)
-        {
-            if (direction)
-            {
-                transform.position = transform.position + Vector3.up * transform.localScale.x * Time.deltaTime * 0.015f/speedScale;
-            }
-            else
-            {
-                transform.position = transform.position + Vector3.up * transform.localScale.x * Time.deltaTime * -0.015f/speedScale;
-            }
-        }
-  
-    }
+    
 }
